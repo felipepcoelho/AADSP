@@ -22,7 +22,7 @@ public class AutenticacaoDAO
             Connection con = conexao.connectionOpen();
             PreparedStatement pstm = con.prepareStatement(query);
             pstm.setString(1,model.getLogin());
-            pstm.setInt(2,model.getSenha());
+            pstm.setString(2,model.getSenha());
             rs = pstm.executeQuery();
         
             while(rs.next()){

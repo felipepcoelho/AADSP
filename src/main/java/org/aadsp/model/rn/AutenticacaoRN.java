@@ -9,7 +9,7 @@ public class AutenticacaoRN implements IAutenticacao
 {
     private static AutenticacaoRN instancia;
     private String login;
-    private int senha;
+    private String senha;
     
     public AutenticacaoRN(){}
     
@@ -27,11 +27,11 @@ public class AutenticacaoRN implements IAutenticacao
         this.login = login;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 

@@ -6,7 +6,7 @@ public interface IAutenticacao {
     public Object getInstance();
     public String getLogin();
     public void setLogin(String login);
-    public int getSenha();
-    public void setSenha(int senha);
+    public String getSenha();
+    public void setSenha(String senha);
     public boolean autenticar();
 }
