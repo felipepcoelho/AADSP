@@ -2,15 +2,15 @@ package org.aadsp.controller;
 
 
 import java.io.IOException;
-import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.aadsp.interfaces.BaseBean;
 
 
 @ManagedBean(name="indexBean")
 @SessionScoped
-public class IndexBean implements Serializable
+public class IndexBean extends BaseBean
 {
     public String getLogin()
     {
@@ -34,7 +34,7 @@ public class IndexBean implements Serializable
 
     public void autenticar() throws IOException
     {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/views/menu/menu.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/menu/menu.xhtml");
     }
     
     private static final long serialVersionUID = 5585493974059809141L;
