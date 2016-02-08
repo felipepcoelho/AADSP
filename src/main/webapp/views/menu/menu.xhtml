@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+                  <div id="main">
+                    <div style="width:100%; margin-left:21px;">
+                        <h4>GERENCIAMENTO</h4>
+                    </div> 
+                    <div style="width: 980px; margin: 10px auto auto auto;">
+                        <div class="widget-painel">
+                            <div class="thumbnail">
+                                <h3>Integração</h3>
+                                <p>    
+                                <ul>
+                                    <li> Des. do Termo de Abertura</li>
+                                    <li> Des. do Plano</li>
+                                    <li> Controle integrado de mudanças</li>
+                                    </ul>
+                                    </p>
+                                <div align="right">
+                                    <a class="btn btn-primary" NavigateUrl="~/Imagens/favicon.ico" runat="server">Acessar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-painel">
+                            <div class="thumbnail">
+                                <h3>Escopo</h3>
+                                <p>
+                                    <ul>
+                                    <li> Des. do Escopo</li>
+                                    <li> Coelta de Requisitos</li>
+                                    <li> Controle integrado de mudanças</li>
+                                    </ul>
+                                </p>
+                                <div align="right">
+                                    <a class="btn btn-primary" NavigateUrl="~/Imagens/favicon.ico" runat="server">Acessar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-painel">
+                            <div class="thumbnail">
+                                <h3>Rec. Humanos</h3>
+                                <p>
+                                    <ul>
+                                    <li> Des. de Rescursos Humanos</li>
+                                    <li> Des. de Papeis</li>
+                                    <li> Custo de Recursos Humanos por Papeis</li>
+                                    </ul>
+                                </p>
+                                <div align="right">
+                                    <a class="btn btn-primary" NavigateUrl="../../admin/gerencia/recursosHumanos/" runat="server">Acessar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
