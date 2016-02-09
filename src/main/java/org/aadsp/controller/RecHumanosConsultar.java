@@ -23,4 +23,7 @@ public class RecHumanosConsultar extends BaseBean
         return usuario.listar();
     }
     
+    public void editar(){
+    
+    }
 }

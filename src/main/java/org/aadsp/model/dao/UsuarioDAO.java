@@ -62,13 +62,17 @@ public class UsuarioDAO
             
             while(rs.next()){
                 IUsuario model = new UsuarioRN();
+                model.setID(rs.getInt("ID"));
                 model.setIdade(rs.getInt("idade"));
                 model.setNome(rs.getString("nome"));
                 model.setCPF(rs.getString("cpf"));
                 model.setRG(rs.getString("rg"));
                 model.setEmail(rs.getString("email"));
+                model.setDataNascimento(rs.getDate("dataNascimento"));
                 
                 DelegacaoUsuarioTipo(model, rs);
+                
+                usuarios.add(model);
             }
             return usuarios;
         } catch (SQLException ex) {
