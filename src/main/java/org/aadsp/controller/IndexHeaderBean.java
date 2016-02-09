@@ -37,10 +37,9 @@ public class IndexHeaderBean extends BaseBean
     
     public void closeSession() throws IOException
     {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) facesContext.getCurrentInstance().getExternalContext().getRequest();
-        HttpSession session = request.getSession();
-        session.setAttribute("autenticacao", null);
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession)fc.getExternalContext().getSession(false);
+        session.invalidate();
         FacesContext.getCurrentInstance().getExternalContext().redirect("../../../../aadsp/faces/index.xhtml");
     }
 

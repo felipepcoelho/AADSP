@@ -4,12 +4,12 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-    <head>
+    <h:head>
         <title>AADSP</title>
         <link href="../../bootstrap/css/bootstrap-master.css" rel="stylesheet"/>
         <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet"/>
         <link href="../../bootstrap/css/bootstrap-general.css" rel="stylesheet"/>
-    </head>
+    </h:head>
     <body>
         <div>
             <h:form>
@@ -34,9 +34,9 @@
                             <div class="clear">
                             </div>
                             <div class="control-group pull-right">
-                                <i class="icon-off icon-white"></i><span style="margin-left:5px;">
-                                <p:commandButton style="border:#002a80;background:#002a80;color:#fff" value="SAIR" actionListener="#{indexHeaderBean.closeSession()}"/>    
-                                </span>
+                                <i class="icon-off icon-white"></i>
+                                <p:commandButton class="btn btn-transparent" value="SAIR" actionListener="#{indexHeaderBean.closeSession()}"/>    
+                                
                             </div>
                             <div class="clear">
                             </div>

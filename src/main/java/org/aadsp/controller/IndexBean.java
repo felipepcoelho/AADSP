@@ -4,7 +4,7 @@ package org.aadsp.controller;
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,7 +14,7 @@ import org.aadsp.model.rn.AutenticacaoRN;
 
 
 @ManagedBean(name="indexBean")
-@SessionScoped
+@RequestScoped
 public class IndexBean extends BaseBean
 {   
     
@@ -43,7 +43,7 @@ public class IndexBean extends BaseBean
         IAutenticacao autenticacao = new AutenticacaoRN();
         autenticacao.setLogin(login);
         autenticacao.setSenha(senha);
-        if(autenticacao.autenticar() != null)
+        if(autenticacao.autenticar()!= null)
         {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) facesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -54,7 +54,7 @@ public class IndexBean extends BaseBean
         else
         {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_WARN,"- ACESSO NEGADO -",  "Não foi possível autenticar o usuário com os dados informados!"));
+            context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_WARN," ACESSO NEGADO  ",  "Não foi possível autenticar o usuário com os dados informados!"));
         }
     }
     

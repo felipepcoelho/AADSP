@@ -34,9 +34,11 @@ public class AutenticacaoDAO
                 model.setSenha(rs.getString("senha"));
                 
                 model = DelegacaoUsuario(rs, model);
+                
+                return model;
             }
             
-            return model;
+            
         } catch (SQLException ex) {
             Logger.getLogger(AutenticacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null; 
@@ -44,7 +46,7 @@ public class AutenticacaoDAO
             Logger.getLogger(AutenticacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;   
         }
-         
+        return null;
     }
 
     private IAutenticacao DelegacaoUsuario(ResultSet rs, IAutenticacao model) throws SQLException {
