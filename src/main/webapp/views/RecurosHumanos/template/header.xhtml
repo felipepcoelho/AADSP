@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>AADSP</title>
+        <link href="../../bootstrap/css/bootstrap-master.css" rel="stylesheet"/>
+        <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet"/>
+        <link href="../../bootstrap/css/bootstrap-general.css" rel="stylesheet"/>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        
+        
+        <script type="text/javascript" src="../../../bootstrap/js/bootstrap.js"></script>
+    </h:head>
+    <body>
+        <div>
+            <h:form>
+            <div class="menu-top">
+                <div class="container-fluid">
+                    <div class="left" style="color:#fff">
+                        <h1>AADSP</h1>
+                        <p>Adaptive Approach for Deployment of Software Process</p>
+                    </div>
+                     <div class="right menu-top-info">
+                            <div class="control-group">
+                                <i class="icon-user icon-white"></i>
+                                <strong>Login:</strong>
+                                <span>
+                                    #{indexHeaderBean.usuarioNome}</span>
+                                <br/>
+                                <i class="icon-bookmark icon-white"></i>
+                                <strong>Função:</strong>
+                                <span>
+                                    #{indexHeaderBean.usuarioFuncao}</span>
+                            </div>
+                            <div class="clear">
+                            </div>
+                            <div class="control-group pull-right">
+                                <i class="icon-off icon-white"></i>
+                                <p:commandButton class="btn btn-transparent" value="SAIR" actionListener="#{indexHeaderBean.closeSession()}"/>    
+                                
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="navbar navbar-static-top" id="nav-contratos">
+            <div class="navbar-inner">
+                <a class="brand" href="../../views/menu/index.xhtml">
+                <span style="margin-left: 5px;">MENU</span>
+            </a>
+            
+            <ul class="nav">
+                <li class="divider-vertical"></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pessoal<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a href="">Consultar</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>    
+            </h:form>
+        </div>
+    </body>
+</html>

@@ -49,7 +49,7 @@ public class IndexBean extends BaseBean
             HttpServletRequest request = (HttpServletRequest) facesContext.getCurrentInstance().getExternalContext().getRequest();
             HttpSession session = request.getSession();
             session.setAttribute("autenticacao", autenticacao);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/menu/menu.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/menu/index.xhtml");
         }
         else
         {
