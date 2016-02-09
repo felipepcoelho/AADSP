@@ -16,7 +16,8 @@ import org.aadsp.model.rn.AutenticacaoRN;
 @ManagedBean(name="indexBean")
 @SessionScoped
 public class IndexBean extends BaseBean
-{
+{   
+    
     public String getLogin()
     {
         return login;
@@ -24,7 +25,7 @@ public class IndexBean extends BaseBean
 
     public void setLogin(String login)
     {
-        this.login = login;
+        this.login = login.toLowerCase();
     }
 
     public String getSenha()
@@ -34,7 +35,7 @@ public class IndexBean extends BaseBean
 
     public void setSenha(String senha)
     {
-        this.senha = senha;
+        this.senha = senha.toLowerCase();
     }
 
     public void autenticar() throws IOException
@@ -42,7 +43,7 @@ public class IndexBean extends BaseBean
         IAutenticacao autenticacao = new AutenticacaoRN();
         autenticacao.setLogin(login);
         autenticacao.setSenha(senha);
-        if(autenticacao.autenticar())
+        if(autenticacao.autenticar() != null)
         {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) facesContext.getCurrentInstance().getExternalContext().getRequest();

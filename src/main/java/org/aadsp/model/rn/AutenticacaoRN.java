@@ -2,21 +2,18 @@
 package org.aadsp.model.rn;
 
 import org.aadsp.interfaces.IAutenticacao;
+import org.aadsp.interfaces.IUsuario;
 import org.aadsp.model.dao.AutenticacaoDAO;
 
 
 public class AutenticacaoRN implements IAutenticacao
 {
-    private static AutenticacaoRN instancia;
     private String login;
     private String senha;
+    private IUsuario usuario;
     
-    public AutenticacaoRN(){}
-    
-    public Object getInstance() {
-        if(instancia == null)
-            instancia = new AutenticacaoRN();
-        return instancia;
+    public AutenticacaoRN(){
+        this.usuario = new UsuarioRN();
     }
     
     public String getLogin() {
@@ -34,9 +31,21 @@ public class AutenticacaoRN implements IAutenticacao
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+    @Override
+    public IUsuario getUsuario() {
+        return this.usuario;
+    }
 
-    public boolean autenticar() {
+    @Override
+    public void setUsuario(IUsuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    public IAutenticacao autenticar() {
         AutenticacaoDAO controller = new AutenticacaoDAO();
         return controller.autenticar(this);
     }
+
+
 }

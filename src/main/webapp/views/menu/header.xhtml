@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <head>
         <title>AADSP</title>
         <link href="../../bootstrap/css/bootstrap-master.css" rel="stylesheet"/>
@@ -10,14 +12,38 @@
     </head>
     <body>
         <div>
+            <h:form>
             <div class="menu-top">
                 <div class="container-fluid">
                     <div class="left" style="color:#fff">
-                            <h1>AADSP</h1>
-                            <p>Adaptive Approach for Deployment of Software Process</p>
+                        <h1>AADSP</h1>
+                        <p>Adaptive Approach for Deployment of Software Process</p>
+                    </div>
+                     <div class="right menu-top-info">
+                            <div class="control-group">
+                                <i class="icon-user icon-white"></i>
+                                <strong>Login:</strong>
+                                <span>
+                                    #{indexHeaderBean.usuarioNome}</span>
+                                <br/>
+                                <i class="icon-bookmark icon-white"></i>
+                                <strong>Função:</strong>
+                                <span>
+                                    #{indexHeaderBean.usuarioFuncao}</span>
+                            </div>
+                            <div class="clear">
+                            </div>
+                            <div class="control-group pull-right">
+                                <i class="icon-off icon-white"></i><span style="margin-left:5px;">
+                                <p:commandButton style="border:#002a80;background:#002a80;color:#fff" value="SAIR" actionListener="#{indexHeaderBean.closeSession()}"/>    
+                                </span>
+                            </div>
+                            <div class="clear">
+                            </div>
                         </div>
                 </div>
             </div>
+            </h:form>
         </div>
     </body>
 </html>
