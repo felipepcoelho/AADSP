@@ -2,6 +2,7 @@
 package org.aadsp.interfaces;
 
 import java.sql.Date;
+import java.util.List;
 
 
 public interface IUsuario
@@ -26,4 +27,5 @@ public interface IUsuario
     public void setEndereco(IEnderecoLogradouro endereco);
     
     public IUsuario consultar();
+    public List<IUsuario> listar();
 }

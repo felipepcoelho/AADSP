@@ -2,6 +2,7 @@
 package org.aadsp.model.rn;
 
 import java.sql.Date;
+import java.util.List;
 import org.aadsp.interfaces.IEnderecoLogradouro;
 import org.aadsp.interfaces.IUsuario;
 import org.aadsp.interfaces.IUsuarioTipo;
@@ -108,6 +109,11 @@ public class UsuarioRN implements IUsuario{
     public IUsuario consultar() {
         UsuarioDAO usuario = new UsuarioDAO();
         return usuario.consultar(this);
+    }
+    
+    public List<IUsuario> listar(){
+        UsuarioDAO usuario = new UsuarioDAO();
+        return usuario.consultar();
     }
     
     private int ID;
