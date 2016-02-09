@@ -6,6 +6,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.aadsp.interfaces.BaseBean;
 import org.aadsp.interfaces.IAutenticacao;
 import org.aadsp.model.rn.AutenticacaoRN;
@@ -40,11 +42,19 @@ public class IndexBean extends BaseBean
         IAutenticacao autenticacao = new AutenticacaoRN();
         autenticacao.setLogin(login);
         autenticacao.setSenha(senha);
-        if(autenticacao.autenticar()){
+        if(autenticacao.autenticar())
+        {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpServletRequest request = (HttpServletRequest) facesContext.getCurrentInstance().getExternalContext().getRequest();
+            HttpSession session = request.getSession();
+            session.setAttribute("autenticacao", autenticacao);
             FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/menu/menu.xhtml");
         }
-        FacesContext context = FacesContext.getCurrentInstance();
+        else
+        {
+            FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_WARN,"- ACESSO NEGADO -",  "Não foi possível autenticar o usuário com os dados informados!"));
+        }
     }
     
     private static final long serialVersionUID = 5585493974059809141L;
