@@ -11,8 +11,6 @@ public interface IUsuario
     public void setID(int id);
     public String getNome();
     public void setNome(String nome);
-    public int getIdade();
-    public void setIdade(int idade);
     public Date getDataNascimento();
     public void setDataNascimento(Date dataNascimento);
     public IUsuarioTipo getUsuarioTipo();

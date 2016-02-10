@@ -7,10 +7,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link href="../../bootstrap/css/bootstrap-general.css" rel="stylesheet"/>
+        <script type="text/javascript" src="../../primefaces/js/showcase.js"></script>
     </h:head>
     <h:body>
         <ui:composition template="template/template.xhtml">
             <ui:define name="content">
+            <h:form id="form">
             <div class="margin-right-left-20">
             <div class="form-inline">
                 <div class="control-group">
@@ -35,7 +37,7 @@
                         <div class="space-30"></div>
                         <div>
                             <div class="table-responsive">
-                            <h:form>
+                           
                                 <p:dataTable id="tbl" style="text-align:center" var="usuarios" value="#{recHumanosConsultar.usuarios}"
                                                 paginator="true" rows="10">
                                        <p:column>
@@ -44,7 +46,6 @@
                                            </f:facet>
                                            <h:outputText value="#{usuarios.ID}" />
                                        </p:column>
-
                                        <p:column>
                                            <f:facet name="header">
                                                <h:outputText value="Nome" />
@@ -54,26 +55,41 @@
 
                                        <p:column>
                                            <f:facet name="header">
-                                               <h:outputText value="Idade" />
-                                           </f:facet>
-                                           <h:outputText value="#{usuarios.idade}" />
-                                       </p:column>
-
-                                       <p:column>
-                                           <f:facet name="header">
                                                <h:outputText value="Data Nascimento" />
                                            </f:facet>
                                            <h:outputText value="#{usuarios.dataNascimento}" />
                                        </p:column>
-            
+                                       
+                                        <p:column style="width:24px" >
+                                            <p:commandLink update=":form:documentPanel" oncomplete="PF('documentDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search">
+                                                <f:setPropertyActionListener value="#{usuarios}" target="#{recHumanosConsultar.selecionado}" />
+                                            </p:commandLink>
+                                        </p:column>
+                                    
                                    </p:dataTable>
-                            </h:form>
+                                
+                                <p:dialog id="dialog" header="Documentos do Usuário" showEffect="fade" widgetVar="documentDialog" modal="true" resizable="false">
+                                    <p:outputPanel id="documentPanel">
+                                        <p:panelGrid  columns="2" columnClasses="Dados,#" rendered="#{not empty recHumanosConsultar.selecionado}">
+                                            <h:outputLabel for="nome" value="Nome: " />
+                                            <h:outputText id="nome" value="#{recHumanosConsultar.selecionado.nome}" style="font-weight:bold" />
+
+                                            <h:outputLabel for="cpf" value="CPF: " />
+                                            <h:outputText id="cpf" value="#{recHumanosConsultar.selecionado.CPF}" style="font-weight:bold" />
+
+                                            <h:outputLabel for="rg" value="RG " />
+                                            <h:outputText id="rg" value="#{recHumanosConsultar.selecionado.RG}" style="font-weight:bold" />
+                                        </p:panelGrid>
+                                    </p:outputPanel>
+                                </p:dialog>
+                                
+                            
                         </div>
                  </div>
             </div>
             </div>
             </div>
-                
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

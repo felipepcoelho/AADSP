@@ -14,6 +14,7 @@ import org.aadsp.model.rn.UsuarioRN;
 public class RecHumanosConsultar extends BaseBean
 {   
     private IUsuario usuario;
+    private IUsuario selecionado;
     
     public RecHumanosConsultar(){
         this.usuario = new UsuarioRN();
@@ -22,8 +23,12 @@ public class RecHumanosConsultar extends BaseBean
     public List<IUsuario> getUsuarios(){
         return usuario.listar();
     }
-    
-    public void editar(){
-    
+
+    public IUsuario getSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(IUsuario selecionado) {
+        this.selecionado = selecionado;
     }
 }

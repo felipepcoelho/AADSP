@@ -26,16 +26,6 @@ public class UsuarioRN implements IUsuario{
     }
 
     @Override
-    public int getIdade() {
-        return this.idade;
-    }
-
-    @Override
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    @Override
     public Date getDataNascimento() {
         return this.dataNascimento;
     }

@@ -30,7 +30,6 @@ public class UsuarioDAO
             rs = pstm.executeQuery();
         
             while(rs.next()){
-                model.setIdade(rs.getInt("idade"));
                 model.setNome(rs.getString("nome"));
                 model.setCPF(rs.getString("cpf"));
                 model.setRG(rs.getString("rg"));
@@ -39,7 +38,8 @@ public class UsuarioDAO
                 DelegacaoUsuarioTipo(model, rs);
                 return model;
             }
-            
+            rs.close();
+            con.close();
         } catch (SQLException ex) {
              Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -63,7 +63,6 @@ public class UsuarioDAO
             while(rs.next()){
                 IUsuario model = new UsuarioRN();
                 model.setID(rs.getInt("ID"));
-                model.setIdade(rs.getInt("idade"));
                 model.setNome(rs.getString("nome"));
                 model.setCPF(rs.getString("cpf"));
                 model.setRG(rs.getString("rg"));
@@ -74,6 +73,8 @@ public class UsuarioDAO
                 
                 usuarios.add(model);
             }
+            rs.close();
+            con.close();
             return usuarios;
         } catch (SQLException ex) {
              Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,7 +83,9 @@ public class UsuarioDAO
         }
         return null;
     }
-    private void DelegacaoUsuarioTipo(IUsuario model, ResultSet rs) throws SQLException {
+    
+    private void DelegacaoUsuarioTipo(IUsuario model, ResultSet rs) throws SQLException 
+    {
         UsuarioTipoDAO tipo = new UsuarioTipoDAO();
         IUsuarioTipo Itipo = model.getUsuarioTipo();
         Itipo.setID(rs.getInt("ID_usuarioTipo"));
