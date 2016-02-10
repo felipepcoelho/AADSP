@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.aadsp.interfaces.IEnderecoLogradouro;
 import org.aadsp.interfaces.IUsuario;
 import org.aadsp.interfaces.IUsuarioTipo;
 import org.aadsp.model.rn.UsuarioRN;
@@ -35,17 +36,25 @@ public class UsuarioDAO
                 model.setRG(rs.getString("rg"));
                 model.setEmail(rs.getString("email"));
                 
+                DelegacaoEndereco(model,rs);
                 DelegacaoUsuarioTipo(model, rs);
-                return model;
             }
             rs.close();
             con.close();
+            return model;
         } catch (SQLException ex) {
              Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    private void DelegacaoEndereco(IUsuario model,ResultSet rs) throws SQLException {
+        IEnderecoLogradouro logradouro = model.getEnderecoLogradouro();
+        logradouro.setID(rs.getInt("ID_enderecoLogradouro"));
+        logradouro = logradouro.consultar();
+        model.setEndereco(logradouro);
     }
     
     public List<IUsuario> consultar()

@@ -12,7 +12,7 @@ public class UsuarioRN implements IUsuario{
     
     public UsuarioRN(){
         this.usuarioTipo = new UsuarioTipoRN();
-        this.enderecoLogradouro = null;
+        this.enderecoLogradouro = new EnderecoLogradouro();
     }
     
     @Override

@@ -99,6 +99,10 @@
     width: 200px;
 }
 
+.width-95-perc{
+    width: 95%;
+}
+
 .labelcolorred {
     color: #b94a48;
 }

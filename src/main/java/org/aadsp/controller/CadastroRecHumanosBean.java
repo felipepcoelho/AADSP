@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.swing.text.html.parser.Parser;
 import org.aadsp.interfaces.BaseBean;
+import org.aadsp.interfaces.IEnderecoLogradouro;
 import org.aadsp.interfaces.IUsuario;
 import org.aadsp.interfaces.IUsuarioTipo;
+import org.aadsp.model.rn.EnderecoLogradouro;
 import org.aadsp.model.rn.UsuarioRN;
 import org.aadsp.model.rn.UsuarioTipoRN;
 
@@ -23,6 +24,14 @@ public class CadastroRecHumanosBean extends BaseBean
     private IUsuarioTipo tipo;
     private int funcaoSelecionada;
     private Map<String,Integer> funcoes;
+    private IEnderecoLogradouro logradouro;
+    
+    public CadastroRecHumanosBean(){
+        this.usuario = new UsuarioRN();
+        this.tipo = new UsuarioTipoRN();
+        this.funcoes = new HashMap<String, Integer>();
+        this.logradouro = new EnderecoLogradouro();
+    }
     
     public int getFuncaoSelecionada() {
         return funcaoSelecionada;
@@ -32,19 +41,20 @@ public class CadastroRecHumanosBean extends BaseBean
         this.funcaoSelecionada = funcaoSelecionada;
     }
     
-    
-    public CadastroRecHumanosBean(){
-        this.usuario = new UsuarioRN();
-        this.tipo = new UsuarioTipoRN();
-        funcoes = new HashMap<String, Integer>();
-    }
-
     public IUsuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(IUsuario usuario) {
         this.usuario = usuario;
+    }
+
+    public IEnderecoLogradouro getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(IEnderecoLogradouro logradouro) {
+        this.logradouro = logradouro;
     }
     
     public Map<String,Integer> getFuncoes(){
@@ -55,4 +65,8 @@ public class CadastroRecHumanosBean extends BaseBean
        return funcoes;
     }
     
+    public void consultarCep(){
+       this.logradouro = logradouro.consultarCEP();
+       
+    }
 }
