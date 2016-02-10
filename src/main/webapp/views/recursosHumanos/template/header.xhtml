@@ -17,18 +17,20 @@
             <h:form>
             <div class="menu-top">
                 <div class="container-fluid">
-                    <div class="left" style="color:#fff">
+                    <a class="brand" href="../../../faces/views/menu/index.xhtml">
+                    <div class="left" style="color:#000">
                         <h1>AADSP</h1>
                         <p>Adaptive Approach for Deployment of Software Process</p>
                     </div>
+                    </a>
                      <div class="right menu-top-info">
                             <div class="control-group">
-                                <i class="icon-user icon-white"></i>
+                                <i class="icon icon-user"></i>
                                 <strong>Login:</strong>
                                 <span>
                                     #{indexHeaderBean.usuarioNome}</span>
                                 <br/>
-                                <i class="icon-bookmark icon-white"></i>
+                                <i class="icon icon-bookmark"></i>
                                 <strong>Função:</strong>
                                 <span>
                                     #{indexHeaderBean.usuarioFuncao}</span>
@@ -36,8 +38,8 @@
                             <div class="clear">
                             </div>
                             <div class="control-group pull-right">
-                                <i class="icon-off icon-white"></i>
-                                <p:commandButton class="btn btn-transparent" value="SAIR" actionListener="#{indexHeaderBean.closeSession()}"/>    
+                                <i class="icon icon-off"></i>
+                                <p:commandButton class="btn btn-transparent" style="color:#000" value="SAIR" actionListener="#{indexHeaderBean.closeSession()}"/>    
                                 
                             </div>
                             <div class="clear">
@@ -47,10 +49,10 @@
             </div>
             <div class="navbar navbar-static-top" id="nav-contratos">
             <div class="navbar-inner">
-                <a class="brand" href="../../views/menu/index.xhtml">
-                <span style="margin-left: 5px;">MENU</span>
+            <a class="brand" href="../../faces/views/recursosHumanos/index.xhtml">
+                    <span style="margin-left: 5px;"><i class="icon icon-home"></i>
+                        <span style="margin-left: 5px;"/>Home</span>
             </a>
-            
             <ul class="nav">
                 <li class="divider-vertical"></li>
                 <li class="dropdown">

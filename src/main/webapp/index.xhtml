@@ -15,7 +15,8 @@
                 <div class="line-top">
                             <center>
                                 <h1>AADSP</h1>
-                                <p>Adaptive Approach for Deployment of Software Process</p>
+                                <div class="space-10"></div>
+                                <p>(Adaptive Approach for Deployment of Software Process)</p>
                             </center>
                         </div>
             </div>
@@ -23,10 +24,10 @@
                 <div class="container">
                     <h:form class="form-signin">
                         <p:growl id="growl" showDetail="true" sticky="true" />  
-                        <h2 class="form-signin-heading">Bem, vindo(a)</h2>
+                        <h2 class="form-signin-heading"></h2>
                         <p:inputText class="input-block-level" id="login" size="30" placeholder="digite seu login" value="#{indexBean.login}" />
                         <p:password  class="input-block-level" id="senha" size="30" placeholder="digite sua senha" value="#{indexBean.senha}"/><br/>
-                        <p:commandButton class="btn btn-primary" value="ENTRAR" update="growl" actionListener="#{indexBean.autenticar()}"/>
+                        <p:commandButton class="btn btn" value="ENTRAR" update="growl" actionListener="#{indexBean.autenticar()}"/>
                     </h:form>
                 </div>
            </div>

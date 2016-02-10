@@ -7,10 +7,10 @@ margin:0;
 }
 body > #wrap {height: auto; min-height: 100%;}
 .form-signin {
-max-width: 300px;
+max-width: 600px;
 padding: 19px 29px 29px;
 margin: 0 auto 20px;
-background-color: #fff;
+background-color: #ccc;
 border: 1px solid #e5e5e5;
 -webkit-border-radius: 5px;
    -moz-border-radius: 5px;
@@ -35,27 +35,27 @@ padding: 7px 9px;
 #footer center{ padding:20px 0 10px 0;}
 #main{ padding-bottom:100px;}
 
-.menu-top{ position:relative; background-color: #002a80;
-    background-image: linear-gradient(to bottom, #002a80, #002a80);
+.menu-top{ position:relative; background-color: #FFF;
+    background-image: linear-gradient(to bottom, #FFF, #e5e5e5);
     background-repeat: repeat-x;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    color: #FFFFFF;
+    color: #000;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); padding:5px 0;}
 .menu-top h1{font-size: 50px;}
 .menu-top p{font-size: 12px;}
 .menu-top-info{padding: 3px; color:#fff; font-size:10pt; margin-top:10px;}
 
-.line-top{ background-color: #002a80;
-    background-image: linear-gradient(to bottom, #002a80, #002a80);
+.line-top{ background-color: #FFF;
+    background-image: linear-gradient(to bottom, #FFF, #e5e5e5);
     background-repeat: repeat-x;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    color: #FFFFFF;
+    color: #000;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); padding:20px 0; border-bottom:solid 2px #ccc;}
-.line-top h1{font-size: 60px;}
-.line-top p{font-size: 22px;}
+.line-top h1{font-size: 80px;}
+.line-top p{font-size: 22px; margin-top: 30px;}
 
-.form-signin {width: 240px; max-width: 300px;padding: 19px 29px 29px;margin: 0 auto 20px;
-background-color: #fff;border: 1px solid #e5e5e5;-webkit-border-radius: 5px;
+.form-signin {text-align: center; width: 400px; max-width: 600px;padding: 19px 29px 29px;margin: 0 auto 20px;
+background-color: #e5e5e5;border: 1px solid #e5e5e5;-webkit-border-radius: 5px;
 -moz-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
 -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
