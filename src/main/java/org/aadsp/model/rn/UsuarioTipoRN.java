@@ -1,7 +1,9 @@
 
 package org.aadsp.model.rn;
 
+import java.util.List;
 import org.aadsp.interfaces.IUsuarioTipo;
+import org.aadsp.model.dao.UsuarioTipoDAO;
 
 
 public class UsuarioTipoRN implements IUsuarioTipo{
@@ -28,5 +30,11 @@ public class UsuarioTipoRN implements IUsuarioTipo{
     
     private int ID;
     private String descricao;
+
+    @Override
+    public List<IUsuarioTipo> listar() {
+        UsuarioTipoDAO dao = new UsuarioTipoDAO();
+        return dao.consultar();
+    }
     
 }

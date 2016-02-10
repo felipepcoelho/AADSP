@@ -1,6 +1,8 @@
 
 package org.aadsp.interfaces;
 
+import java.util.List;
+
 
 public interface IUsuarioTipo 
 {
@@ -8,4 +10,6 @@ public interface IUsuarioTipo
     public void setID(int id);
     public String getDescricao();
     public void setDescricao(String descricao);
+    
+    public List<IUsuarioTipo> listar();
 }

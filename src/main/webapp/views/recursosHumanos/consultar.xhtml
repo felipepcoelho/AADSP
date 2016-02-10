@@ -19,7 +19,7 @@
                     <div>
                         <h3>PESSOAL CADASTRADO</h3>
                          <div class="right">
-                         <a class="btn btn-primary" href="#">NOVO</a>
+                             <a class="btn btn-primary" href="cadastrar.xhtml">NOVO</a>
                         </div>
                         <p><strong>CONSULTA</strong></p>
                     </div>
@@ -79,6 +79,9 @@
 
                                             <h:outputLabel for="rg" value="RG " />
                                             <h:outputText id="rg" value="#{recHumanosConsultar.selecionado.RG}" style="font-weight:bold" />
+                                            
+                                             <h:outputLabel for="email" value="E-mail " />
+                                             <h:outputText id="email" value="#{recHumanosConsultar.selecionado.email}" style="font-weight:bold" />
                                         </p:panelGrid>
                                     </p:outputPanel>
                                 </p:dialog>
@@ -89,6 +92,7 @@
             </div>
             </div>
             </div>
+            
                 </h:form>
             </ui:define>
         </ui:composition>
