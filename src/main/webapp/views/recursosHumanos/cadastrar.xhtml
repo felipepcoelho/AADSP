@@ -31,7 +31,8 @@
                         <p:inputText id="nome" maxlength="200" value="#{cadastroRecHumanosBean.usuario.nome}"/>
                        
                         <p:outputLabel for="data" value="Data de Nascimento" />
-                        <p:calendar id="data" value="#{cadastroRecHumanosBean.usuario.dataNascimento}" pattern="dd-MM-yyyy" mask="true" />
+                        <p:calendar id="data" value="#{cadastroRecHumanosBean.data}" pattern="dd/MM/yyyy" mask="true" />
+                        
                     </h:panelGrid>
                   </p:tab>
                   <p:tab title="Endereço">
@@ -42,10 +43,18 @@
                     </h:panelGrid>
                       <p:outputPanel id="enderecoPanel">
                           <h:panelGrid columns="2" cellpadding="5">
-                            <p:outputLabel class="label"  value="CEP:" />
+                            <p:outputLabel class="label label-info"  value="CEP:" />
                             <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.CEP}" />
                             <p:outputLabel class="label label-info" value="Logradouro:" />
                             <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.nome}" />
+                            <p:outputLabel class="label label-info" value="Bairro:" />
+                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.bairro.nome}" />
+                            <p:outputLabel class="label label-info" value="Cidade" />
+                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.bairro.cidade.nome}" />
+                            <p:outputLabel class="label label-info" value="Estado" />
+                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.bairro.cidade.estado.nome}" />
+                            <p:outputLabel class="label label-info" value="UF" />
+                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.bairro.cidade.estado.uf}" />
                           </h:panelGrid>
                       </p:outputPanel>
                   </p:tab>  
@@ -76,6 +85,8 @@
                    </p:tab>   
                 </p:tabView>
                 </div>
+                <div class="space-20"></div>
+                <p:commandButton class="btn" value="CADASTRAR" actionListener="#{cadastroRecHumanosBean.cadastrar()}"/>
                     </div>
                 </div>
             </h:form>

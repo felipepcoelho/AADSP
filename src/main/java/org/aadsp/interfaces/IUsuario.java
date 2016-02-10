@@ -26,4 +26,5 @@ public interface IUsuario
     
     public IUsuario consultar();
     public List<IUsuario> listar();
+    public void cadastrar();
 }

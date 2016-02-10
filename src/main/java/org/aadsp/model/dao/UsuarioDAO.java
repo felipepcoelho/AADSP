@@ -18,6 +18,36 @@ import org.aadsp.utils.Conexao;
 
 public class UsuarioDAO 
 {
+    
+    public void cadastrar(IUsuario model){
+        String query =  "INSERT INTO USUARIO.AADSP_USUARIO_CADASTRO\n" +
+                        "(nome,dataNascimento,ID_usuarioTipo,cpf,rg,email,id_enderecoLogradouro)\n" +
+                        "VALUES\n" +
+                        "(?,?,?,?,?,?,?)";
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.connectionOpen();
+            PreparedStatement pstm = con.prepareStatement(query);
+            pstm.setString(1,model.getNome());
+            pstm.setDate(2,model.getDataNascimento());
+            pstm.setInt(3,model.getUsuarioTipo().getID());
+            pstm.setString(4,model.getCPF());
+            pstm.setString(5,model.getRG());
+            pstm.setString(6,model.getEmail());
+            pstm.setInt(7,model.getEnderecoLogradouro().getID());
+            
+            pstm.executeQuery();
+        
+            con.close();
+        } catch (SQLException ex) {
+             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    }
+    
     public IUsuario consultar(IUsuario model)
     {
         String query = "SELECT * from USUARIO.AADSP_USUARIO_CADASTRO WHERE ID = ?";
@@ -52,7 +82,7 @@ public class UsuarioDAO
 
     private void DelegacaoEndereco(IUsuario model,ResultSet rs) throws SQLException {
         IEnderecoLogradouro logradouro = model.getEnderecoLogradouro();
-        logradouro.setID(rs.getInt("ID_enderecoLogradouro"));
+        logradouro.setCEP(rs.getInt("id_enderecoLogradouro"));
         logradouro = logradouro.consultar();
         model.setEndereco(logradouro);
     }
