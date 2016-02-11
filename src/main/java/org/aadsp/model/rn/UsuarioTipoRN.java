@@ -32,7 +32,7 @@ public class UsuarioTipoRN implements IUsuarioTipo{
     private String descricao;
 
     @Override
-    public List<IUsuarioTipo> listar() {
+    public List<IUsuarioTipo> listar() throws Exception{
         UsuarioTipoDAO dao = new UsuarioTipoDAO();
         return dao.consultar();
     }

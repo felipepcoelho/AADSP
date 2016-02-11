@@ -15,6 +15,8 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="template/template.xhtml">
             <ui:define id="index" name="content">
+                <h:form>
+                  <p:growl id="growl" showDetail="true" sticky="true" />
                   <div id="main">
                     <div style="width:100%; margin-left:21px;">
                         <h4>GERENCIAMENTO</h4>
@@ -67,6 +69,7 @@ and open the template in the editor.
                         </div>
                     </div>
                  </div>
+                </h:form>
             </ui:define>
             
         </ui:composition>

@@ -4,7 +4,7 @@ package org.aadsp.model.rn;
 import org.aadsp.interfaces.IEnderecoEstado;
 
 
-public class EnderecoEstado implements IEnderecoEstado
+public class EnderecoEstadoRN implements IEnderecoEstado
 {
     private int ID;
     private String Uf;

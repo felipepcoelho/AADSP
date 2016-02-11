@@ -3,14 +3,15 @@ package org.aadsp.controller;
 
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import org.aadsp.interfaces.BaseBean;
+import javax.faces.context.FacesContext;
+import org.aadsp.interfaces.ABaseBean;
 import org.aadsp.interfaces.IEnderecoLogradouro;
 import org.aadsp.interfaces.IUsuario;
 import org.aadsp.interfaces.IUsuarioTipo;
@@ -19,9 +20,9 @@ import org.aadsp.model.rn.UsuarioRN;
 import org.aadsp.model.rn.UsuarioTipoRN;
 
 
-@ManagedBean(name="cadastroRecHumanosBean")
+@ManagedBean(name="recHumanosCadastrarBean")
 @ViewScoped
-public class CadastroRecHumanosBean extends BaseBean
+public class RecHumanosCadastrarBean extends ABaseBean
 {   
     private IUsuario usuario;
     private IUsuarioTipo tipo;
@@ -31,11 +32,12 @@ public class CadastroRecHumanosBean extends BaseBean
     private Date data;
     
     
-    public CadastroRecHumanosBean(){
+    public RecHumanosCadastrarBean(){
         this.usuario = new UsuarioRN();
         this.tipo = new UsuarioTipoRN();
         this.funcoes = new HashMap<String, Integer>();
         this.logradouro = new EnderecoLogradouro();
+        data = new Date(new Date().getTime());
     }
 
     public Date getData() {
@@ -72,21 +74,40 @@ public class CadastroRecHumanosBean extends BaseBean
     }
     
     public Map<String,Integer> getFuncoes(){
+       try{
        List<IUsuarioTipo> lista = this.tipo.listar();
        for(IUsuarioTipo obj: lista){
            funcoes.put(obj.getDescricao(),obj.getID());
        }
        return funcoes;
+       }catch(Exception e){
+           FacesContext context = FacesContext.getCurrentInstance();
+           context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_ERROR," ERRO!  ",  "Não foi possível consultar as funções dos usuários no banco de dados!"));
+       }
+        return null;
     }
     
     public void consultarCep(){
-       this.logradouro = logradouro.consultarCEP();
-       this.usuario.setEndereco(logradouro);
+       try{
+        this.logradouro = logradouro.consultarCEP();
+        this.usuario.setEndereco(logradouro);
+       }catch(Exception e){
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_ERROR," ERRO!  ",  "Não foi possível consultar o CEP no banco de dados!"));
+       }
     }
     
     public void cadastrar() throws ParseException{
-       this.tipo.setID(funcaoSelecionada);
-       this.usuario.setUsuarioTipo(tipo);
-       usuario.cadastrar();
+       try{
+            this.tipo.setID(funcaoSelecionada);
+            this.usuario.setUsuarioTipo(tipo);
+            usuario.cadastrar();
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_INFO," SUCESSO! ",  "O cadastro do usuario foi realizado com sucesso!"));
+            this.usuario = new UsuarioRN();
+       }catch(Exception e){
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_ERROR," ERRO! ",  "Não foi possível realizar o cadastro no banco de dados!"));
+       }
     }
 }

@@ -97,17 +97,17 @@ public class UsuarioRN implements IUsuario{
     }
 
     @Override
-    public IUsuario consultar() {
+    public IUsuario consultar() throws Exception{
         UsuarioDAO usuario = new UsuarioDAO();
         return usuario.consultar(this);
     }
     
-    public List<IUsuario> listar(){
+    public List<IUsuario> listar() throws Exception{
         UsuarioDAO usuario = new UsuarioDAO();
         return usuario.consultar();
     }
     
-    public void cadastrar(){
+    public void cadastrar() throws Exception{
         UsuarioDAO usuario = new UsuarioDAO();
         usuario.cadastrar(this);
     }

@@ -54,7 +54,7 @@ padding: 7px 9px;
 .line-top h1{font-size: 80px;}
 .line-top p{font-size: 22px; margin-top: 30px;}
 
-.form-signin {text-align: center; width: 400px; max-width: 600px;padding: 19px 29px 29px;margin: 0 auto 20px;
+.form-signin {text-align: center; width: 200px; max-width: 600px;padding: 19px 29px 29px;margin: 0 auto 20px;
 background-color: #e5e5e5;border: 1px solid #e5e5e5;-webkit-border-radius: 5px;
 -moz-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
 -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);box-shadow: 0 1px 2px rgba(0,0,0,.05);

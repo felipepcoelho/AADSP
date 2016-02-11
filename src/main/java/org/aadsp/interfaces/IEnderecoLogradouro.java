@@ -13,6 +13,6 @@ public interface IEnderecoLogradouro
     public int getCEP();
     public void setCEP(int cep);
     
-    public IEnderecoLogradouro consultar();
-    public IEnderecoLogradouro consultarCEP();
+    public IEnderecoLogradouro consultar() throws Exception;
+    public IEnderecoLogradouro consultarCEP() throws Exception;
 }

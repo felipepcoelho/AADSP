@@ -24,7 +24,7 @@ public interface IUsuario
     public IEnderecoLogradouro getEnderecoLogradouro();
     public void setEndereco(IEnderecoLogradouro endereco);
     
-    public IUsuario consultar();
-    public List<IUsuario> listar();
-    public void cadastrar();
+    public IUsuario consultar() throws Exception;
+    public List<IUsuario> listar() throws Exception;
+    public void cadastrar() throws Exception;
 }

@@ -13,6 +13,7 @@
         <ui:composition template="template/template.xhtml">
             <ui:define name="content">
             <h:form id="form">
+                <p:growl id="growl" showDetail="true" sticky="true" />
                 <div class="margin-right-left-20">
                     <div>
                         <h3>PESSOAL</h3>
@@ -28,65 +29,65 @@
                   <p:tab title="Dados Gerais">
                    <h:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel for="nome" value="Nome (completo):" />
-                        <p:inputText id="nome" maxlength="200" value="#{cadastroRecHumanosBean.usuario.nome}"/>
+                        <p:inputText id="nome" maxlength="200" value="#{recHumanosCadastrarBean.usuario.nome}"/>
                        
                         <p:outputLabel for="data" value="Data de Nascimento" />
-                        <p:calendar id="data" value="#{cadastroRecHumanosBean.data}" pattern="dd/MM/yyyy" mask="true" />
+                        <p:calendar id="data" value="#{recHumanosCadastrarBean.data}" pattern="dd/MM/yyyy" mask="true" />
                         
                     </h:panelGrid>
                   </p:tab>
                   <p:tab title="Endereço">
                    <h:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel for="cep" value="Informe o CEP:" />
-                        <p:inputMask id="cep" maxlength="20" mask="9?999999999999999" value="#{cadastroRecHumanosBean.logradouro.CEP}"/>
-                        <p:commandButton class="btn" style="padding:0" update="enderecoPanel" value="consultar" actionListener="#{cadastroRecHumanosBean.consultarCep()}"/>
+                        <p:inputMask id="cep" maxlength="20" mask="9?999999999999999" value="#{recHumanosCadastrarBean.logradouro.CEP}"/>
+                        <p:commandButton class="btn" style="padding:0" update="enderecoPanel" value="consultar" actionListener="#{recHumanosCadastrarBean.consultarCep()}"/>
                     </h:panelGrid>
                       <p:outputPanel id="enderecoPanel">
                           <h:panelGrid columns="2" cellpadding="5">
                             <p:outputLabel class="label label-info"  value="CEP:" />
-                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.CEP}" />
+                            <p:outputLabel value="#{recHumanosCadastrarBean.logradouro.CEP}" />
                             <p:outputLabel class="label label-info" value="Logradouro:" />
-                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.nome}" />
+                            <p:outputLabel value="#{recHumanosCadastrarBean.logradouro.nome}" />
                             <p:outputLabel class="label label-info" value="Bairro:" />
-                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.bairro.nome}" />
+                            <p:outputLabel value="#{recHumanosCadastrarBean.logradouro.bairro.nome}" />
                             <p:outputLabel class="label label-info" value="Cidade" />
-                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.bairro.cidade.nome}" />
+                            <p:outputLabel value="#{recHumanosCadastrarBean.logradouro.bairro.cidade.nome}" />
                             <p:outputLabel class="label label-info" value="Estado" />
-                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.bairro.cidade.estado.nome}" />
+                            <p:outputLabel value="#{recHumanosCadastrarBean.logradouro.bairro.cidade.estado.nome}" />
                             <p:outputLabel class="label label-info" value="UF" />
-                            <p:outputLabel value="#{cadastroRecHumanosBean.logradouro.bairro.cidade.estado.uf}" />
+                            <p:outputLabel value="#{recHumanosCadastrarBean.logradouro.bairro.cidade.estado.uf}" />
                           </h:panelGrid>
                       </p:outputPanel>
                   </p:tab>  
                   <p:tab title="Função">
                     <h:panelGrid columns="2" cellpadding="5">  
                         <p:outputLabel for="funcao" value="Função: " />
-                        <p:selectOneMenu id="funcao"  value="#{cadastroRecHumanosBean.funcaoSelecionada}" style="width:150px">
+                        <p:selectOneMenu id="funcao"  value="#{recHumanosCadastrarBean.funcaoSelecionada}" style="width:150px">
                             <f:selectItem itemLabel="Selecionar Função" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{cadastroRecHumanosBean.funcoes}" />
+                            <f:selectItems value="#{recHumanosCadastrarBean.funcoes}" />
                         </p:selectOneMenu>
                     </h:panelGrid>      
                   </p:tab>
                   <p:tab title="Redes Sociais">
                   <h:panelGrid columns="2" cellpadding="5">  
                         <p:outputLabel for="email" value="E-mail):" />
-                        <p:inputText id="email" maxlength="200" value="#{cadastroRecHumanosBean.usuario.email}"/>
+                        <p:inputText id="email" maxlength="200" value="#{recHumanosCadastrarBean.usuario.email}"/>
                   </h:panelGrid>      
                   </p:tab>
                   <p:tab title="Documentos Pessoais">
                     <h:panelGrid columns="2" cellpadding="5">  
                         <p:outputLabel for="rg" value="RG:" />
-                        <p:inputMask id="rg"  maxlength="20" mask="9?999999999999999" value="#{cadastroRecHumanosBean.usuario.RG}"/>
+                        <p:inputMask id="rg"  maxlength="20" mask="9?999999999999999" value="#{recHumanosCadastrarBean.usuario.RG}"/>
                         
                         <p:outputLabel for="cpf" value="CPF:" />
-                        <p:inputMask id="cpf"  maxlength="20" mask="9?999999999999999" value="#{cadastroRecHumanosBean.usuario.CPF}"/>
+                        <p:inputMask id="cpf"  maxlength="20" mask="9?999999999999999" value="#{recHumanosCadastrarBean.usuario.CPF}"/>
                         
                     </h:panelGrid>
                    </p:tab>   
                 </p:tabView>
                 </div>
                 <div class="space-20"></div>
-                <p:commandButton class="btn" value="CADASTRAR" actionListener="#{cadastroRecHumanosBean.cadastrar()}"/>
+                <p:commandButton class="btn" value="CADASTRAR" update="growl" actionListener="#{recHumanosCadastrarBean.cadastrar()}"/>
                     </div>
                 </div>
             </h:form>

@@ -16,7 +16,7 @@ import org.aadsp.utils.Conexao;
 
 public class UsuarioTipoDAO 
 {
-    public IUsuarioTipo consultar(IUsuarioTipo model)
+    public IUsuarioTipo consultar(IUsuarioTipo model) throws Exception
     {
         String query = "select * from AADSP.USUARIO.AADSP_USUARIO_TIPO WHERE ID = ?";
         ResultSet rs = null;
@@ -34,15 +34,12 @@ public class UsuarioTipoDAO
             rs.close();
             con.close();
             return model;
-        } catch (SQLException ex) {
-             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return model;
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        } 
     }
     
-    public List<IUsuarioTipo> consultar()
+    public List<IUsuarioTipo> consultar() throws Exception
     {
         String query = "select * from AADSP.USUARIO.AADSP_USUARIO_TIPO ";
         ResultSet rs = null;
@@ -63,11 +60,8 @@ public class UsuarioTipoDAO
             rs.close();
             con.close();
             return lista;
-        } catch (SQLException ex) {
-             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException e) {
+           throw e;
         }
-        return null;
     }
 }

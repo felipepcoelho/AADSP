@@ -14,7 +14,7 @@ public class EnderecoLogradouro implements IEnderecoLogradouro
     private int CEP;
     
     public EnderecoLogradouro(){
-        this.bairro = new EnderecoBairro();
+        this.bairro = new EnderecoBairroRN();
     }
     
     public int getID() {
@@ -49,12 +49,12 @@ public class EnderecoLogradouro implements IEnderecoLogradouro
         this.CEP = CEP;
     }
     
-    public IEnderecoLogradouro consultar(){
+    public IEnderecoLogradouro consultar() throws Exception{
         EnderecoDAO endereco = new EnderecoDAO();
         return endereco.consultar(this);
     }
     
-     public IEnderecoLogradouro consultarCEP(){
+     public IEnderecoLogradouro consultarCEP() throws Exception{
         EnderecoDAO endereco = new EnderecoDAO();
         return endereco.consultarCEP(this);
     }

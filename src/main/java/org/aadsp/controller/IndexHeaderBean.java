@@ -8,13 +8,13 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.aadsp.interfaces.BaseBean;
+import org.aadsp.interfaces.ABaseBean;
 import org.aadsp.interfaces.IAutenticacao;
 
 
 @ManagedBean(name="indexHeaderBean")
 @SessionScoped
-public class IndexHeaderBean extends BaseBean
+public class IndexHeaderBean extends ABaseBean
 {
     public IAutenticacao autenticacao;
     

@@ -7,15 +7,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.aadsp.interfaces.IUsuario;
 import org.aadsp.model.rn.UsuarioRN;
 
 
 public class AutenticacaoDAO
 {
-    public IAutenticacao autenticar(IAutenticacao model)
+    public IAutenticacao autenticar(IAutenticacao model) throws Exception
     {
         String query = "SELECT * FROM ACESSO.AADSP_ACESSO_DADOS WHERE LOGIN = ? AND SENHA = ?";
         ResultSet rs = null;
@@ -37,17 +35,13 @@ public class AutenticacaoDAO
             }
             
             
-        } catch (SQLException ex) {
-            Logger.getLogger(AutenticacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null; 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AutenticacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;   
+        }catch(ClassNotFoundException | SQLException e){
+           throw e;
         }
         return null;
     }
 
-    private IAutenticacao DelegacaoUsuario(ResultSet rs, IAutenticacao model) throws SQLException {
+    private IAutenticacao DelegacaoUsuario(ResultSet rs, IAutenticacao model) throws Exception {
         IUsuario usuario = new UsuarioRN();
         usuario.setID(rs.getInt("ID_cadastroUsuario"));
         usuario = usuario.consultar();

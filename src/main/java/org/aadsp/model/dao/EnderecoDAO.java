@@ -17,7 +17,7 @@ import org.aadsp.utils.Conexao;
 
 public class EnderecoDAO 
 {
-    public IEnderecoLogradouro consultar(IEnderecoLogradouro model)
+    public IEnderecoLogradouro consultar(IEnderecoLogradouro model) throws Exception
     {
         String query =  "SELECT TOP 1 \n" +
                         "EL.ID IDLogradouro,\n" +
@@ -65,15 +65,12 @@ public class EnderecoDAO
             rs.close();
             con.close();
             return model;
-        } catch (SQLException ex) {
-             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException e){
+            throw e;
         }
-        return null;
     }
     
-    public IEnderecoLogradouro consultarCEP(IEnderecoLogradouro model)
+    public IEnderecoLogradouro consultarCEP(IEnderecoLogradouro model) throws Exception
     {
         String query =  "SELECT TOP 1 \n" +
                         "EL.ID IDLogradouro,\n" +
@@ -121,11 +118,8 @@ public class EnderecoDAO
             rs.close();
             con.close();
             return model;
-        } catch (SQLException ex) {
-             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
+        } 
     }
 }

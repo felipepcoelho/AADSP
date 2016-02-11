@@ -42,7 +42,7 @@ public class AutenticacaoRN implements IAutenticacao
         this.usuario = usuario;
     }
     
-    public IAutenticacao autenticar() {
+    public IAutenticacao autenticar() throws Exception{
         AutenticacaoDAO controller = new AutenticacaoDAO();
         return controller.autenticar(this);
     }

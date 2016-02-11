@@ -19,7 +19,7 @@ import org.aadsp.utils.Conexao;
 public class UsuarioDAO 
 {
     
-    public void cadastrar(IUsuario model){
+    public void cadastrar(IUsuario model) throws Exception{
         String query =  "INSERT INTO USUARIO.AADSP_USUARIO_CADASTRO\n" +
                         "(nome,dataNascimento,ID_usuarioTipo,cpf,rg,email,id_enderecoLogradouro)\n" +
                         "VALUES\n" +
@@ -34,21 +34,20 @@ public class UsuarioDAO
             pstm.setString(4,model.getCPF());
             pstm.setString(5,model.getRG());
             pstm.setString(6,model.getEmail());
-            pstm.setInt(7,model.getEnderecoLogradouro().getID());
+            pstm.setLong(7,model.getEnderecoLogradouro().getID());
             
-            pstm.executeQuery();
-        
+            pstm.executeUpdate();
+            
+            pstm.close();
             con.close();
-        } catch (SQLException ex) {
-             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }catch(ClassNotFoundException e) {
+             throw e;
+        } 
     
     
     }
     
-    public IUsuario consultar(IUsuario model)
+    public IUsuario consultar(IUsuario model) throws Exception
     {
         String query = "SELECT * from USUARIO.AADSP_USUARIO_CADASTRO WHERE ID = ?";
         ResultSet rs = null;
@@ -72,22 +71,20 @@ public class UsuarioDAO
             rs.close();
             con.close();
             return model;
-        } catch (SQLException ex) {
-             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException e) {
+            throw e;
         }
-        return null;
     }
 
-    private void DelegacaoEndereco(IUsuario model,ResultSet rs) throws SQLException {
+    private void DelegacaoEndereco(IUsuario model,ResultSet rs) throws Exception 
+    {
         IEnderecoLogradouro logradouro = model.getEnderecoLogradouro();
         logradouro.setCEP(rs.getInt("id_enderecoLogradouro"));
         logradouro = logradouro.consultar();
         model.setEndereco(logradouro);
     }
     
-    public List<IUsuario> consultar()
+    public List<IUsuario> consultar() throws Exception
     {
         String query = "SELECT * from USUARIO.AADSP_USUARIO_CADASTRO";
         ResultSet rs = null;
@@ -115,15 +112,12 @@ public class UsuarioDAO
             rs.close();
             con.close();
             return usuarios;
-        } catch (SQLException ex) {
-             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        } catch (ClassNotFoundException | SQLException e){
+           throw e;
+        } 
     }
     
-    private void DelegacaoUsuarioTipo(IUsuario model, ResultSet rs) throws SQLException 
+    private void DelegacaoUsuarioTipo(IUsuario model, ResultSet rs) throws Exception 
     {
         UsuarioTipoDAO tipo = new UsuarioTipoDAO();
         IUsuarioTipo Itipo = model.getUsuarioTipo();

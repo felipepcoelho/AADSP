@@ -5,11 +5,11 @@ import org.aadsp.interfaces.IEnderecoCidade;
 import org.aadsp.interfaces.IEnderecoEstado;
 
 
-public class EnderecoCidade implements IEnderecoCidade
+public class EnderecoCidadeRN implements IEnderecoCidade
 {
     
-    public EnderecoCidade(){
-        this.estado = new EnderecoEstado();
+    public EnderecoCidadeRN(){
+        this.estado = new EnderecoEstadoRN();
     }
 
     public int getID() {

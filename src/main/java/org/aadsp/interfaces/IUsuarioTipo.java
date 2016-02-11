@@ -11,5 +11,5 @@ public interface IUsuarioTipo
     public String getDescricao();
     public void setDescricao(String descricao);
     
-    public List<IUsuarioTipo> listar();
+    public List<IUsuarioTipo> listar() throws Exception;
 }

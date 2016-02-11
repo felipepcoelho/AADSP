@@ -5,14 +5,14 @@ import org.aadsp.interfaces.IEnderecoBairro;
 import org.aadsp.interfaces.IEnderecoCidade;
 
 
-public class EnderecoBairro implements IEnderecoBairro
+public class EnderecoBairroRN implements IEnderecoBairro
 {
     private int ID;
     private IEnderecoCidade cidade;
     private String nome;
     
-    public EnderecoBairro(){
-        this.cidade = new EnderecoCidade();
+    public EnderecoBairroRN(){
+        this.cidade = new EnderecoCidadeRN();
     }
 
     public int getID() {
