@@ -1,17 +1,20 @@
 package org.aadsp.controller;
 
 
+
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.aadsp.annotations.Autenticacao;
+import org.aadsp.annotations.crud.AutenticacaoCRUD;
 import org.aadsp.interfaces.ABaseBean;
-import org.aadsp.interfaces.IAutenticacao;
-import org.aadsp.model.rn.AutenticacaoRN;
+import org.aadsp.utils.ConexaoHibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 
 @ManagedBean(name="indexBean")
@@ -19,33 +22,30 @@ import org.aadsp.model.rn.AutenticacaoRN;
 public class IndexBean extends ABaseBean
 {   
     
-    public String getLogin()
-    {
-        return login;
+    public IndexBean(){
+       autenticacao = new Autenticacao();
+       autenticacao.setLogin("");
+       autenticacao.setSenha("");
     }
 
-    public void setLogin(String login)
-    {
-        this.login = login.toLowerCase();
+    public Autenticacao getAutenticacao() {
+        return autenticacao;
     }
 
-    public String getSenha()
-    {
-        return senha;
+    public void setAutenticacao(Autenticacao autenticacao) {
+        this.autenticacao = autenticacao;
     }
-
-    public void setSenha(String senha)
-    {
-        this.senha = senha.toLowerCase();
-    }
-
+    
     public void autenticar() throws IOException
     {
        try{
-        IAutenticacao autenticacao = new AutenticacaoRN();
-        autenticacao.setLogin(login);
-        autenticacao.setSenha(senha);
-        if(autenticacao.autenticar()!= null)
+        AutenticacaoCRUD crud = new AutenticacaoCRUD();
+        Session sessao = null;
+        sessao = ConexaoHibernate.getSessionFactory().openSession();
+        crud.setSession(sessao);
+        autenticacao = crud.autenticar(autenticacao);
+        sessao = null;
+        if(autenticacao != null)
         {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) facesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -65,6 +65,5 @@ public class IndexBean extends ABaseBean
     }
     
     private static final long serialVersionUID = 5585493974059809141L;
-    private String login;
-    private String senha;
+    private Autenticacao autenticacao;
 }
