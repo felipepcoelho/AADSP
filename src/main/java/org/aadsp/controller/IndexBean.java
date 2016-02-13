@@ -29,6 +29,11 @@ public class IndexBean extends ABaseBean
     }
 
     public Autenticacao getAutenticacao() {
+        if(autenticacao == null){
+            autenticacao = new Autenticacao();
+            autenticacao.setLogin("");
+            autenticacao.setSenha("");
+        }
         return autenticacao;
     }
 
