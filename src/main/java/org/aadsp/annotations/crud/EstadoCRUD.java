@@ -1,22 +1,21 @@
 
 package org.aadsp.annotations.crud;
 
-import java.util.List;
-import org.aadsp.annotations.Autenticacao;
-import org.aadsp.annotations.TipoUsuario;
-import org.aadsp.annotations.Usuario;
+import org.aadsp.annotations.Estado;
 import org.aadsp.interfaces.ICrud;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-
-public class TipoUsuarioCRUD implements ICrud
-{
-    private Session sessao;
+/**
+ *
+ * @author Felipe
+ */
+public class EstadoCRUD implements ICrud{
     
-    @Override
-    public void setSession(Session sessao) {
-         this.sessao = sessao;
+    private Session sessao;
+   
+    public void setSession(Session sessao){
+      this.sessao = sessao;
     }
 
     @Override
@@ -34,19 +33,15 @@ public class TipoUsuarioCRUD implements ICrud
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public TipoUsuario consultarPorID(TipoUsuario tipoUsuario){
-        Query consulta = sessao.createQuery("from TipoUsuario where ID = :idParametro");
-        consulta.setInteger("idParametro", tipoUsuario.getID());
-        return (TipoUsuario) consulta.uniqueResult();
-    }
-    
-    public List<TipoUsuario> listar()throws Exception
+    public Estado consultarPorID(Estado estado)throws Exception
     {
         try{
-            Query consulta = sessao.createQuery("from TipoUsuario");
-            return consulta.list();
+        Query consulta = sessao.createQuery("from Estado where ID = :idParametro");
+        consulta.setInteger("idParametro", estado.getID());
+        return (Estado) consulta.uniqueResult();
         }catch(Exception e){
             throw e;
         }
     }
+    
 }

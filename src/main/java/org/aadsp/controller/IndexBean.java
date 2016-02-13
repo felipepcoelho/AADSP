@@ -5,20 +5,20 @@ package org.aadsp.controller;
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.aadsp.annotations.Autenticacao;
 import org.aadsp.annotations.crud.AutenticacaoCRUD;
 import org.aadsp.interfaces.ABaseBean;
-import org.aadsp.utils.ConexaoHibernate;
+import org.aadsp.utils.FactoryHibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 
 @ManagedBean(name="indexBean")
-@ViewScoped
+@SessionScoped
 public class IndexBean extends ABaseBean
 {   
     
@@ -39,13 +39,10 @@ public class IndexBean extends ABaseBean
     public void autenticar() throws IOException
     {
        try{
-        AutenticacaoCRUD crud = new AutenticacaoCRUD();
-        Session sessao = null;
-        sessao = ConexaoHibernate.getSessionFactory().openSession();
-        crud.setSession(sessao);
+        AutenticacaoCRUD crud = new AutenticacaoCRUD();;
+        crud.setSession(FactoryHibernate.getSessionFactory().openSession());
         autenticacao = crud.autenticar(autenticacao);
-        sessao = null;
-        if(autenticacao != null)
+        if(autenticacao != null && autenticacao.getLogin() != null && autenticacao.getSenha() != null)
         {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) facesContext.getCurrentInstance().getExternalContext().getRequest();

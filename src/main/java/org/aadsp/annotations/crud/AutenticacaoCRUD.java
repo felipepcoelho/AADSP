@@ -30,11 +30,15 @@ public class AutenticacaoCRUD implements ICrud{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public Autenticacao autenticar(Autenticacao autenticacao){
-        Query consulta = sessao.createQuery("from Autenticacao where login = :loginParametro and senha = :senhaParametro");
-        consulta.setString("loginParametro", autenticacao.getLogin());
-        consulta.setString("senhaParametro", autenticacao.getSenha());
-        return (Autenticacao) consulta.uniqueResult();
+    public Autenticacao autenticar(Autenticacao autenticacao) throws Exception{
+        try{
+            Query consulta = sessao.createQuery("from Autenticacao where login = :loginParametro and senha = :senhaParametro");
+            consulta.setString("loginParametro", autenticacao.getLogin());
+            consulta.setString("senhaParametro", autenticacao.getSenha());
+            return (Autenticacao) consulta.uniqueResult();
+        }catch(Exception e){
+            throw  e;
+        }
     }
 
 

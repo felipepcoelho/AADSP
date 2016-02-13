@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class ConexaoHibernate{
+public class FactoryHibernate{
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory()
@@ -14,8 +14,7 @@ public class ConexaoHibernate{
         {
             Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
             return cfg.buildSessionFactory();
-//            AnnotationConfiguration configuration = new AnnotationConfiguration();          
-//            return configuration.configure("hibernate.cfg.xml").buildSessionFactory(); 
+            
         }
         catch(Throwable e)
         { 
@@ -26,9 +25,7 @@ public class ConexaoHibernate{
     
       public static SessionFactory getSessionFactory()
     {
-
         return sessionFactory;
-
     }
     
 }

@@ -13,14 +13,18 @@
         <ui:composition template="template/template.xhtml">
             <ui:define name="content">
             <h:form id="form">
-            <p:growl id="growl" showDetail="true" sticky="true" />     
+            <p:growl id="growl" showDetail="true" sticky="true" /> 
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <img src="../../img/loading.gif" alt=""/>
+            </p:dialog>
             <div class="margin-right-left-20">
             <div class="form-inline">
                 <div class="control-group">
                     <div>
                         <h3>PESSOAL</h3>
                          <div class="right">
-                             <a class="btn btn-primary" href="cadastrar.xhtml">NOVO</a>
+                             <a class="btn btn-inverse" href="cadastrar.xhtml">NOVO</a>
                         </div>
                         <p><strong>CONSULTA</strong></p>
                     </div>

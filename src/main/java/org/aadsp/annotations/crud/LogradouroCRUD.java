@@ -1,22 +1,19 @@
 
 package org.aadsp.annotations.crud;
 
-import java.util.List;
-import org.aadsp.annotations.Autenticacao;
-import org.aadsp.annotations.TipoUsuario;
-import org.aadsp.annotations.Usuario;
+import org.aadsp.annotations.Logradouro;
 import org.aadsp.interfaces.ICrud;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 
-public class TipoUsuarioCRUD implements ICrud
+public class LogradouroCRUD implements ICrud
 {
+
     private Session sessao;
-    
-    @Override
-    public void setSession(Session sessao) {
-         this.sessao = sessao;
+   
+    public void setSession(Session sessao){
+      this.sessao = sessao;
     }
 
     @Override
@@ -34,19 +31,27 @@ public class TipoUsuarioCRUD implements ICrud
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public TipoUsuario consultarPorID(TipoUsuario tipoUsuario){
-        Query consulta = sessao.createQuery("from TipoUsuario where ID = :idParametro");
-        consulta.setInteger("idParametro", tipoUsuario.getID());
-        return (TipoUsuario) consulta.uniqueResult();
-    }
-    
-    public List<TipoUsuario> listar()throws Exception
+    public Logradouro consultarPorID(Logradouro logradouro)throws Exception
     {
         try{
-            Query consulta = sessao.createQuery("from TipoUsuario");
-            return consulta.list();
+            Query consulta = sessao.createQuery("from Logradouro where ID = :idParametro");
+            consulta.setInteger("idParametro", logradouro.getID());
+            return (Logradouro) consulta.uniqueResult();
         }catch(Exception e){
             throw e;
         }
     }
+    
+    public Logradouro consultarPorCEP(Logradouro logradouro)throws Exception
+    {
+        try{
+            Query consulta = sessao.createQuery("from Logradouro where cep = :cepParametro");
+            consulta.setString("cepParametro", logradouro.getCep());
+            return (Logradouro) consulta.uniqueResult();
+        }catch(Exception e){
+            throw e;
+        }
+    }
+    
+    
 }

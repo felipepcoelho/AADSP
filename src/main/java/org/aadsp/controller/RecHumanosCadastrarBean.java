@@ -1,7 +1,5 @@
 package org.aadsp.controller;
 
-
-
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,72 +9,83 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.aadsp.annotations.TipoUsuario;
+import org.aadsp.annotations.Usuario;
+import org.aadsp.annotations.crud.TipoUsuarioCRUD;
+import org.aadsp.annotations.crud.UsuarioCRUD;
+import org.aadsp.annotations.rn.Endereco;
 import org.aadsp.interfaces.ABaseBean;
-import org.aadsp.interfaces.IEnderecoLogradouro;
-import org.aadsp.interfaces.IUsuario;
-import org.aadsp.interfaces.IUsuarioTipo;
-import org.aadsp.model.rn.EnderecoLogradouro;
-import org.aadsp.model.rn.UsuarioRN;
-import org.aadsp.model.rn.UsuarioTipoRN;
+import org.aadsp.utils.FactoryHibernate;
 
 
 @ManagedBean(name="recHumanosCadastrarBean")
 @ViewScoped
 public class RecHumanosCadastrarBean extends ABaseBean
 {   
-    private IUsuario usuario;
-    private IUsuarioTipo tipo;
+    private Usuario usuario;
+    private TipoUsuario tipo;
     private int funcaoSelecionada;
     private Map<String,Integer> funcoes;
-    private IEnderecoLogradouro logradouro;
+    private Endereco endereco;
     private Date data;
     
     
-    public RecHumanosCadastrarBean(){
-        this.usuario = new UsuarioRN();
-        this.tipo = new UsuarioTipoRN();
+    public RecHumanosCadastrarBean()
+    {
+        this.usuario = new Usuario();
+        this.tipo = new TipoUsuario();
         this.funcoes = new HashMap<String, Integer>();
-        this.logradouro = new EnderecoLogradouro();
+        this.endereco = new Endereco();
         data = new Date(new Date().getTime());
     }
 
-    public Date getData() {
+    public Date getData()
+    {
         return data;
     }
 
-    public void setData(Date data) throws ParseException{
+    public void setData(Date data) throws ParseException
+    {
         java.sql.Date dataSql = new java.sql.Date(data.getTime());
         this.usuario.setDataNascimento(dataSql);
     }
     
-    public int getFuncaoSelecionada() {
+    public int getFuncaoSelecionada()
+    {
         return funcaoSelecionada;
     }
 
-    public void setFuncaoSelecionada(int funcaoSelecionada) {
+    public void setFuncaoSelecionada(int funcaoSelecionada)
+    {
         this.funcaoSelecionada = funcaoSelecionada;
     }
     
-    public IUsuario getUsuario() {
+    public Usuario getUsuario()
+    {
         return usuario;
     }
 
-    public void setUsuario(IUsuario usuario) {
+    public void setUsuario(Usuario usuario)
+    {
         this.usuario = usuario;
     }
     
-    public IEnderecoLogradouro getLogradouro() {
-        return logradouro;
+    public Endereco getEndereco() 
+    {
+        return endereco;
     }
 
-    public void setLogradouro(IEnderecoLogradouro logradouro) {
-        this.logradouro = logradouro;
+    public void setEndereco(Endereco endereco)
+    {
+        this.endereco = endereco;
     }
     
     public Map<String,Integer> getFuncoes(){
        try{
-       List<IUsuarioTipo> lista = this.tipo.listar();
-       for(IUsuarioTipo obj: lista){
+            TipoUsuarioCRUD crud = new TipoUsuarioCRUD();;
+            crud.setSession(FactoryHibernate.getSessionFactory().openSession());
+            List<TipoUsuario> lista = crud.listar();
+       for(TipoUsuario obj: lista){
            funcoes.put(obj.getDescricao(),obj.getID());
        }
        return funcoes;
@@ -87,24 +96,31 @@ public class RecHumanosCadastrarBean extends ABaseBean
         return null;
     }
     
-    public void consultarCep(){
-       try{
-        this.logradouro = logradouro.consultarCEP();
-        this.usuario.setEndereco(logradouro);
+    public void consultarCep()
+    {
+       try
+       {
+        if(this.endereco.consultarEndereco(endereco.getLogradouro()))
+        {
+            this.usuario.setId_enderecoLogradouro(endereco.getLogradouro().getID());
+        }
        }catch(Exception e){
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_ERROR," ERRO!  ",  "Não foi possível consultar o CEP no banco de dados!"));
        }
     }
     
-    public void cadastrar() throws ParseException{
+    public void cadastrar() throws ParseException
+    {
        try{
+            UsuarioCRUD crud = new UsuarioCRUD();;
+            crud.setSession(FactoryHibernate.getSessionFactory().openSession());
             this.tipo.setID(funcaoSelecionada);
-            this.usuario.setUsuarioTipo(tipo);
-            usuario.cadastrar();
+            this.usuario.setId_usuarioTipo(tipo.getID());
+            crud.salvar(usuario);
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_INFO," SUCESSO! ",  "O cadastro do usuario foi realizado com sucesso!"));
-            this.usuario = new UsuarioRN();
+            context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_INFO," SUCESSO! ",  "O cadastro do usuário foi realizado com sucesso!"));
+            usuario = new Usuario();
        }catch(Exception e){
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_ERROR," ERRO! ",  "Não foi possível realizar o cadastro no banco de dados!"));

@@ -2,6 +2,7 @@
 package org.aadsp.controller;
 
 import java.io.IOException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -13,8 +14,7 @@ import org.aadsp.annotations.Usuario;
 import org.aadsp.annotations.crud.TipoUsuarioCRUD;
 import org.aadsp.annotations.crud.UsuarioCRUD;
 import org.aadsp.interfaces.ABaseBean;
-import org.aadsp.utils.ConexaoHibernate;
-import org.hibernate.Session;
+import org.aadsp.utils.FactoryHibernate;
 
 
 @ManagedBean(name="indexHeaderBean")
@@ -39,24 +39,23 @@ public class IndexHeaderBean extends ABaseBean
     
     private void carregarDadosUsuario()
     {
+        try{
         UsuarioCRUD crud = new UsuarioCRUD();
-        Session sessao = null;
-        sessao = ConexaoHibernate.getSessionFactory().openSession();
-        crud.setSession(sessao);
+        crud.setSession(FactoryHibernate.getSessionFactory().openSession());
         usuario = crud.consultarPorID(usuario);
-        sessao = null;
         tipoUsuario.setID(usuario.getId_usuarioTipo());
         carregarDadosTipoUsuario();
+        }catch(Exception e){
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_ERROR," ERRO!!  ",  "Não foi possível encontrar os dados do usuário!"));
+        }
     }
     
     private void carregarDadosTipoUsuario()
     {
         TipoUsuarioCRUD crud = new TipoUsuarioCRUD();
-        Session sessao = null;
-        sessao = ConexaoHibernate.getSessionFactory().openSession();
-        crud.setSession(sessao);
+        crud.setSession(FactoryHibernate.getSessionFactory().openSession());
         tipoUsuario = crud.consultarPorID(tipoUsuario);
-        sessao = null;
     }
     
     public String getUsuarioNome(){

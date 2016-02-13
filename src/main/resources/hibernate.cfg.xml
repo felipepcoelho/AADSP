@@ -12,5 +12,9 @@
     <mapping class="org.aadsp.annotations.Autenticacao" />
     <mapping class="org.aadsp.annotations.TipoUsuario" />
     <mapping class="org.aadsp.annotations.Usuario" />
+    <mapping class="org.aadsp.annotations.Logradouro" />
+    <mapping class="org.aadsp.annotations.Bairro" />
+    <mapping class="org.aadsp.annotations.Cidade" />
+    <mapping class="org.aadsp.annotations.Estado" />
   </session-factory>
 </hibernate-configuration>

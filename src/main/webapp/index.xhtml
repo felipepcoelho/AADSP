@@ -24,11 +24,17 @@
                 <div class="container">
                     <h:form class="form-signin">
                         <h3>Olá, seja bem vindo</h3>
-                        <p:growl id="growl" showDetail="true" sticky="true" />  
+                         
                         <h2 class="form-signin-heading"></h2>
                         <p:inputText class="input-block-level" id="login" size="30" placeholder="digite seu login" value="#{indexBean.autenticacao.login}" />
                         <p:password  class="input-block-level" id="senha" size="30" placeholder="digite sua senha" value="#{indexBean.autenticacao.senha}"/><br/>
                         <p:commandButton class="btn btn-inverse" value="ENTRAR" update="growl" actionListener="#{indexBean.autenticar()}"/>
+                        
+                        <p:growl id="growl" showDetail="true" sticky="true" /> 
+                        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                            <img src="img/loading.gif" alt=""/>
+                        </p:dialog>
                     </h:form>
                 </div>
            </div>
