@@ -23,20 +23,18 @@
             <div class="top-40">
                 <div class="container">
                     <h:form class="form-signin">
+                        <h3>Olá, seja bem vindo</h3>
                         <p:growl id="growl" showDetail="true" sticky="true" />  
                         <h2 class="form-signin-heading"></h2>
                         <p:inputText class="input-block-level" id="login" size="30" placeholder="digite seu login" value="#{indexBean.autenticacao.login}" />
                         <p:password  class="input-block-level" id="senha" size="30" placeholder="digite sua senha" value="#{indexBean.autenticacao.senha}"/><br/>
-                        <p:commandButton class="btn btn" value="ENTRAR" update="growl" actionListener="#{indexBean.autenticar()}"/>
+                        <p:commandButton class="btn btn-inverse" value="ENTRAR" update="growl" actionListener="#{indexBean.autenticar()}"/>
                     </h:form>
                 </div>
            </div>
     <div id="footer" class="container-fluid">
         <center class="muted credit">
             <strong>AADSP - Adaptive Approach for Deployment of Software Process</strong>
-            <p>
-                Desenvolvido por Felipe Coelho
-            </p>
         </center>
     </div>
     </h:body>
