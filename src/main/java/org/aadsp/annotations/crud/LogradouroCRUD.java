@@ -5,6 +5,7 @@ import org.aadsp.annotations.Logradouro;
 import org.aadsp.interfaces.ICrud;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 
 public class LogradouroCRUD implements ICrud
@@ -12,23 +13,33 @@ public class LogradouroCRUD implements ICrud
 
     private Session sessao;
    
-    public void setSession(Session sessao){
-      this.sessao = sessao;
+    @Override
+    public void setSession(Session sessao) {
+        this.sessao = sessao;
     }
 
     @Override
     public void salvar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Transaction transacao = sessao.beginTransaction();
+        sessao.save(obj);
+        transacao.commit();
+        sessao.close();
     }
 
     @Override
     public void atualizar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Transaction transacao = sessao.beginTransaction();
+        sessao.update(obj);
+        transacao.commit();
+        sessao.close();
     }
 
     @Override
     public void excluir(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Transaction transacao = sessao.beginTransaction();
+        sessao.delete(obj);
+        transacao.commit();
+        sessao.close();
     }
     
     public Logradouro consultarPorID(Logradouro logradouro)throws Exception
@@ -39,6 +50,8 @@ public class LogradouroCRUD implements ICrud
             return (Logradouro) consulta.uniqueResult();
         }catch(Exception e){
             throw e;
+        }finally{
+            sessao.close();
         }
     }
     
@@ -50,6 +63,8 @@ public class LogradouroCRUD implements ICrud
             return (Logradouro) consulta.uniqueResult();
         }catch(Exception e){
             throw e;
+        }finally{
+            sessao.close();
         }
     }
     

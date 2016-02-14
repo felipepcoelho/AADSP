@@ -1,6 +1,7 @@
 package org.aadsp.controller;
 
 
+import java.io.IOException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -17,7 +18,6 @@ import org.aadsp.utils.FactoryHibernate;
 public class RecHumanosConsultarBean extends ABaseBean
 {   
     private Usuario usuario;
-    private Usuario selecionado;
     
     public RecHumanosConsultarBean(){
         this.usuario = new Usuario();
@@ -34,12 +34,10 @@ public class RecHumanosConsultarBean extends ABaseBean
         }
         return null;
     }
-
-    public Usuario getSelecionado() {
-        return selecionado;
+    
+    public void editar(Usuario selecionado) throws IOException{
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("usuario", selecionado);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/recursosHumanos/editarPessoal.xhtml");
     }
 
-    public void setSelecionado(Usuario selecionado) {
-        this.selecionado = selecionado;
-    }
 }

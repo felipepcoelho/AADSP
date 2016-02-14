@@ -16,22 +16,22 @@ public class TipoUsuarioCRUD implements ICrud
     
     @Override
     public void setSession(Session sessao) {
-         this.sessao = sessao;
+        this.sessao = sessao;
     }
 
     @Override
     public void salvar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sessao.save(obj);
     }
 
     @Override
     public void atualizar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sessao.update(obj);
     }
 
     @Override
     public void excluir(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sessao.delete(obj);
     }
     
     public TipoUsuario consultarPorID(TipoUsuario tipoUsuario){
@@ -47,6 +47,8 @@ public class TipoUsuarioCRUD implements ICrud
             return consulta.list();
         }catch(Exception e){
             throw e;
+        }finally{
+            sessao.close();
         }
     }
 }

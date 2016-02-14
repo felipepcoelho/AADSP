@@ -24,7 +24,7 @@
                     <div>
                         <h3>PESSOAL</h3>
                          <div class="right">
-                             <a class="btn btn-inverse" href="cadastrar.xhtml">NOVO</a>
+                             <a class="btn btn-inverse" href="cadastrarPessoal.xhtml">NOVO</a>
                         </div>
                         <p><strong>CONSULTA</strong></p>
                     </div>
@@ -65,32 +65,11 @@
                                            <h:outputText value="#{usuarios.dataNascimento}" />
                                        </p:column>
                                        
-                                        <p:column style="width:24px" >
-                                            <p:commandLink update=":form:documentPanel" oncomplete="PF('documentDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search">
-                                                <f:setPropertyActionListener value="#{usuarios}" target="#{recHumanosConsultarBean.selecionado}" />
-                                            </p:commandLink>
+                                        <p:column style="width:30px" >
+                                            <p:commandButton icon="ui-icon ui-icon-search"  action="#{recHumanosConsultarBean.editar(usuarios)}" />
                                         </p:column>
                                     
                                    </p:dataTable>
-                                
-                                <p:dialog id="dialog" header="Documentos do Usuário" showEffect="fade" widgetVar="documentDialog" modal="true" resizable="false">
-                                    <p:outputPanel id="documentPanel">
-                                        <p:panelGrid  columns="2" columnClasses="Dados,#" rendered="#{not empty recHumanosConsultarBean.selecionado}">
-                                            <h:outputLabel for="nome" value="Nome: " />
-                                            <h:outputText id="nome" value="#{recHumanosConsultarBean.selecionado.nome}" style="font-weight:bold" />
-
-                                            <h:outputLabel for="cpf" value="CPF: " />
-                                            <h:outputText id="cpf" value="#{recHumanosConsultarBean.selecionado.CPF}" style="font-weight:bold" />
-
-                                            <h:outputLabel for="rg" value="RG " />
-                                            <h:outputText id="rg" value="#{recHumanosConsultarBean.selecionado.RG}" style="font-weight:bold" />
-                                            
-                                             <h:outputLabel for="email" value="E-mail " />
-                                             <h:outputText id="email" value="#{recHumanosConsultarBean.selecionado.email}" style="font-weight:bold" />
-                                        </p:panelGrid>
-                                    </p:outputPanel>
-                                </p:dialog>
-                                
                             
                         </div>
                  </div>

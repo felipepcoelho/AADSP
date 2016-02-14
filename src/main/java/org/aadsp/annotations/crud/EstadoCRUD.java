@@ -5,6 +5,7 @@ import org.aadsp.annotations.Estado;
 import org.aadsp.interfaces.ICrud;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -14,23 +15,33 @@ public class EstadoCRUD implements ICrud{
     
     private Session sessao;
    
-    public void setSession(Session sessao){
-      this.sessao = sessao;
+    @Override
+    public void setSession(Session sessao) {
+        this.sessao = sessao;
     }
 
     @Override
     public void salvar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Transaction transacao = sessao.beginTransaction();
+        sessao.save(obj);
+        transacao.commit();
+        sessao.close();
     }
 
     @Override
     public void atualizar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Transaction transacao = sessao.beginTransaction();
+        sessao.update(obj);
+        transacao.commit();
+        sessao.close();
     }
 
     @Override
     public void excluir(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Transaction transacao = sessao.beginTransaction();
+        sessao.delete(obj);
+        transacao.commit();
+        sessao.close();
     }
     
     public Estado consultarPorID(Estado estado)throws Exception
@@ -41,6 +52,8 @@ public class EstadoCRUD implements ICrud{
         return (Estado) consulta.uniqueResult();
         }catch(Exception e){
             throw e;
+        }finally{
+            sessao.close();
         }
     }
     

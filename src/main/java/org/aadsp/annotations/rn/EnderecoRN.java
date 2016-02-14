@@ -12,14 +12,14 @@ import org.aadsp.annotations.crud.LogradouroCRUD;
 import org.aadsp.utils.FactoryHibernate;
 
 
-public class Endereco 
+public class EnderecoRN 
 {
     private Logradouro logradouro;
     private Bairro bairro;
     private Cidade cidade;
     private Estado estado;
     
-    public Endereco()
+    public EnderecoRN()
     {
         logradouro = new Logradouro();
         bairro = new Bairro();

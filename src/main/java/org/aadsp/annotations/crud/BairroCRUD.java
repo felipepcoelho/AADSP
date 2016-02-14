@@ -5,6 +5,7 @@ import org.aadsp.annotations.Bairro;
 import org.aadsp.interfaces.ICrud;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -14,23 +15,33 @@ public class BairroCRUD implements ICrud{
     
     private Session sessao;
    
-    public void setSession(Session sessao){
-      this.sessao = sessao;
+    @Override
+    public void setSession(Session sessao) {
+        this.sessao = sessao;
     }
 
     @Override
     public void salvar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Transaction transacao = sessao.beginTransaction();
+        sessao.save(obj);
+        transacao.commit();
+        sessao.close();
     }
 
     @Override
     public void atualizar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Transaction transacao = sessao.beginTransaction();
+        sessao.update(obj);
+        transacao.commit();
+        sessao.close();
     }
 
     @Override
     public void excluir(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Transaction transacao = sessao.beginTransaction();
+        sessao.delete(obj);
+        transacao.commit();
+        sessao.close();
     }
     
     public Bairro consultarPorID(Bairro bairro)throws Exception
@@ -41,6 +52,8 @@ public class BairroCRUD implements ICrud{
         return (Bairro) consulta.uniqueResult();
         }catch(Exception e){
             throw e;
+        }finally{
+            sessao.close();
         }
     }
     

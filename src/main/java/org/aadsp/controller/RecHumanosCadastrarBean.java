@@ -13,7 +13,7 @@ import org.aadsp.annotations.TipoUsuario;
 import org.aadsp.annotations.Usuario;
 import org.aadsp.annotations.crud.TipoUsuarioCRUD;
 import org.aadsp.annotations.crud.UsuarioCRUD;
-import org.aadsp.annotations.rn.Endereco;
+import org.aadsp.annotations.rn.EnderecoRN;
 import org.aadsp.interfaces.ABaseBean;
 import org.aadsp.utils.FactoryHibernate;
 
@@ -26,7 +26,7 @@ public class RecHumanosCadastrarBean extends ABaseBean
     private TipoUsuario tipo;
     private int funcaoSelecionada;
     private Map<String,Integer> funcoes;
-    private Endereco endereco;
+    private EnderecoRN endereco;
     private Date data;
     
     
@@ -35,7 +35,7 @@ public class RecHumanosCadastrarBean extends ABaseBean
         this.usuario = new Usuario();
         this.tipo = new TipoUsuario();
         this.funcoes = new HashMap<String, Integer>();
-        this.endereco = new Endereco();
+        this.endereco = new EnderecoRN();
         data = new Date(new Date().getTime());
     }
 
@@ -70,12 +70,12 @@ public class RecHumanosCadastrarBean extends ABaseBean
         this.usuario = usuario;
     }
     
-    public Endereco getEndereco() 
+    public EnderecoRN getEndereco() 
     {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco)
+    public void setEndereco(EnderecoRN endereco)
     {
         this.endereco = endereco;
     }
