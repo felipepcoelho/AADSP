@@ -24,7 +24,7 @@
                     <div>
                         <h3>PESSOAL</h3>
                          <div class="right">
-                             <a class="btn btn-inverse" href="cadastrarPessoal.xhtml">NOVO</a>
+                             <a class="btn btn-inverse" href="PessoalCadastrar.xhtml">NOVO</a>
                         </div>
                         <p><strong>CONSULTA</strong></p>
                     </div>
@@ -43,7 +43,7 @@
                         <div>
                             <div class="table-responsive">
                            
-                                <p:dataTable id="tbl" style="text-align:center" var="usuarios" value="#{recHumanosConsultarBean.usuarios}"
+                                <p:dataTable id="tbl" style="text-align:center" var="usuarios" value="#{pessoalConsultar.usuarios}"
                                                 paginator="true" rows="10">
                                        <p:column>
                                            <f:facet name="header">
@@ -66,7 +66,7 @@
                                        </p:column>
                                        
                                         <p:column style="width:30px" >
-                                            <p:commandButton icon="ui-icon ui-icon-search"  action="#{recHumanosConsultarBean.editar(usuarios)}" />
+                                            <p:commandButton icon="ui-icon ui-icon-search"  action="#{pessoalConsultar.editar(usuarios)}" />
                                         </p:column>
                                     
                                    </p:dataTable>

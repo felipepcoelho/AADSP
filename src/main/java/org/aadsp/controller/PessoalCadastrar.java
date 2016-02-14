@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.aadsp.annotations.TipoUsuario;
 import org.aadsp.annotations.Usuario;
@@ -18,9 +18,9 @@ import org.aadsp.interfaces.ABaseBean;
 import org.aadsp.utils.FactoryHibernate;
 
 
-@ManagedBean(name="recHumanosCadastrarBean")
 @ViewScoped
-public class RecHumanosCadastrarBean extends ABaseBean
+@Named
+public class PessoalCadastrar extends ABaseBean
 {   
     private Usuario usuario;
     private TipoUsuario tipo;
@@ -30,7 +30,7 @@ public class RecHumanosCadastrarBean extends ABaseBean
     private Date data;
     
     
-    public RecHumanosCadastrarBean()
+    public PessoalCadastrar()
     {
         this.usuario = new Usuario();
         this.tipo = new TipoUsuario();

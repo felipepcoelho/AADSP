@@ -18,7 +18,7 @@
             <p:growl id="growl" showDetail="true" sticky="true" />    
             <div class="menu-top">
                 <div class="container-fluid">
-                    <a class="brand" href="../../../faces/views/menu/index.xhtml">
+                    <a class="brand" href="../../../faces/views/menu/Index.xhtml">
                     <div class="left" style="color:#FFF">
                         <h1>AADSP</h1>
                         <p>Adaptive Approach for Deployment of Software Process</p>
@@ -29,18 +29,18 @@
                                 <i class="icon icon-user icon-white"></i>
                                 <strong>Login:</strong>
                                 <span>
-                                    #{indexHeaderBean.usuarioNome}</span>
+                                    #{headerTemplate.usuarioNome}</span>
                                 <br/>
                                 <i class="icon icon-bookmark icon-white"></i>
                                 <strong>Função:</strong>
                                 <span>
-                                    #{indexHeaderBean.usuarioFuncao}</span>
+                                    #{headerTemplate.usuarioFuncao}</span>
                             </div>
                             <div class="clear">
                             </div>
                             <div class="control-group pull-right">
                                 <i class="icon icon-off icon-white"></i>
-                                <p:commandButton class="btn btn-transparent" style="color:#FFF" value="SAIR" actionListener="#{indexHeaderBean.closeSession()}"/>    
+                                <p:commandButton class="btn btn-transparent" style="color:#FFF" value="SAIR" actionListener="#{headerTemplate.closeSession()}"/>    
                                 
                             </div>
                             <div class="clear">
@@ -50,7 +50,7 @@
             </div>
             <div class="navbar navbar-static-top" id="nav-contratos">
             <div class="navbar-inner">
-            <a class="brand" href="../../faces/views/recursosHumanos/index.xhtml">
+            <a class="brand" href="../../faces/views/rh/Index.xhtml">
                     <span style="margin-left: 5px;"><i class="icon icon-home"></i>
                         <span style="margin-left: 5px;"/>Home</span>
             </a>
@@ -61,7 +61,19 @@
                     <ul class="dropdown-menu">
 
                         <li>
-                            <a href="../../views/recursosHumanos/consultarPessoal.xhtml">Consultar</a></li>
+                            <a href="../../views/rh/PessoalConsultar.xhtml">Consultar</a></li>
+                        <li>
+                            <a href="../../views/rh/PessoalCadastrar.xhtml">Cadastrar</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Funcionários<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a href="../../views/rh/FuncionarioConsultar.xhtml">Consultar</a></li>
+                        <li>
+                            <a href="../../views/rh/FuncionarioCadastrar.xhtml">Cadastrar</a></li>
                     </ul>
                 </li>
             </ul>

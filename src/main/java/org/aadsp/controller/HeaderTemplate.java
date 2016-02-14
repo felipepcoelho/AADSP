@@ -3,8 +3,8 @@ package org.aadsp.controller;
 
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,15 +17,15 @@ import org.aadsp.interfaces.ABaseBean;
 import org.aadsp.utils.FactoryHibernate;
 
 
-@ManagedBean(name="indexHeaderBean")
 @SessionScoped
-public class IndexHeaderBean extends ABaseBean
+@Named
+public class HeaderTemplate extends ABaseBean
 {
     private Autenticacao autenticacao;
     private Usuario usuario;
     private TipoUsuario tipoUsuario;
     
-    public IndexHeaderBean()
+    public HeaderTemplate()
     {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) facesContext.getCurrentInstance().getExternalContext().getRequest();

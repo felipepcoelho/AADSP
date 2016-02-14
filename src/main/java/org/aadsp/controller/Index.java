@@ -4,8 +4,8 @@ package org.aadsp.controller;
 
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,16 +13,14 @@ import org.aadsp.annotations.Autenticacao;
 import org.aadsp.annotations.crud.AutenticacaoCRUD;
 import org.aadsp.interfaces.ABaseBean;
 import org.aadsp.utils.FactoryHibernate;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 
-@ManagedBean(name="indexBean")
 @SessionScoped
-public class IndexBean extends ABaseBean
+@Named
+public class Index extends ABaseBean
 {   
     
-    public IndexBean(){
+    public Index(){
        autenticacao = new Autenticacao();
        autenticacao.setLogin("");
        autenticacao.setSenha("");
@@ -53,7 +51,7 @@ public class IndexBean extends ABaseBean
             HttpServletRequest request = (HttpServletRequest) facesContext.getCurrentInstance().getExternalContext().getRequest();
             HttpSession session = request.getSession();
             session.setAttribute("autenticacao", autenticacao);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/menu/index.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/menu/Index.xhtml");
         }
         else
         {

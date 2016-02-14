@@ -16,5 +16,6 @@
     <mapping class="org.aadsp.annotations.Bairro" />
     <mapping class="org.aadsp.annotations.Cidade" />
     <mapping class="org.aadsp.annotations.Estado" />
+    <mapping class="org.aadsp.annotations.PermissoesAcesso" />
   </session-factory>
 </hibernate-configuration>

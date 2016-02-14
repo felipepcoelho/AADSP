@@ -15,39 +15,46 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter(servletNames = { "Faces Servlet" })
 public class ControleDeAcesso implements Filter {
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
-
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpSession session = req.getSession();
-                
-                
-                if ((session.getAttribute("autenticacao") != null)
-                    || (req.getRequestURI().endsWith("index.xhtml"))
-                    || (req.getRequestURI().contains("bootstrap/"))
-                    || (req.getRequestURI().contains("img/"))
-                    || (req.getRequestURI().contains("primefaces/"))
-                    || (req.getRequestURI().contains("javax.faces.resource/"))) {
-			
-			chain.doFilter(request, response);
-		}
-
-		else {
-			redireciona("/aadsp/faces/index.xhtml", response);
-		}
+	
+    
+    
+    public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) throws IOException, ServletException 
+    {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpSession session = req.getSession();
 
 
-	}
+        if ((session.getAttribute("autenticacao") != null)
+        || (req.getRequestURI().endsWith("Index.xhtml"))
+        || (req.getRequestURI().endsWith("aadsp/"))
+        || (req.getRequestURI().contains("bootstrap/"))
+        || (req.getRequestURI().contains("img/"))
+        || (req.getRequestURI().contains("primefaces/"))
+        || (req.getRequestURI().contains("javax.faces.resource/"))) 
+        {
+            chain.doFilter(request, response);
+        }
+        else 
+        {
+            redireciona("/aadsp/faces/Index.xhtml", response);
+        }
 
-	public void init(FilterConfig filterConfig) throws ServletException {
-	}
 
-	public void destroy() {
-	}
+    }
 
-	private void redireciona(String url, ServletResponse response)
-			throws IOException {
-		HttpServletResponse res = (HttpServletResponse) response;
-		res.sendRedirect(url);
-	}
+    public void init(FilterConfig filterConfig) throws ServletException {
+	
+    }
+
+	
+    public void destroy() {
+    
+    }
+
+	
+    private void redireciona(String url, ServletResponse response)throws IOException 
+    {
+        HttpServletResponse res = (HttpServletResponse) response;
+        res.sendRedirect(url);
+    }
 }

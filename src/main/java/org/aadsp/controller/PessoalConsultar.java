@@ -4,8 +4,8 @@ package org.aadsp.controller;
 import java.io.IOException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.aadsp.annotations.Usuario;
 import org.aadsp.annotations.crud.UsuarioCRUD;
@@ -13,13 +13,13 @@ import org.aadsp.interfaces.ABaseBean;
 import org.aadsp.utils.FactoryHibernate;
 
 
-@ManagedBean(name="recHumanosConsultarBean")
 @ViewScoped
-public class RecHumanosConsultarBean extends ABaseBean
+@Named
+public class PessoalConsultar extends ABaseBean
 {   
     private Usuario usuario;
     
-    public RecHumanosConsultarBean(){
+    public PessoalConsultar(){
         this.usuario = new Usuario();
     }
     
@@ -37,7 +37,7 @@ public class RecHumanosConsultarBean extends ABaseBean
     
     public void editar(Usuario selecionado) throws IOException{
         FacesContext.getCurrentInstance().getExternalContext().getFlash().put("usuario", selecionado);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/recursosHumanos/editarPessoal.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/recursosHumanos/PessoalEditar.xhtml");
     }
 
 }

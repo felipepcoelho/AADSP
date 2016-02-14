@@ -1,6 +1,5 @@
 package org.aadsp.controller;
 
-
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,9 +21,9 @@ import org.aadsp.interfaces.ABaseBean;
 import org.aadsp.utils.FactoryHibernate;
 
 
-@ManagedBean(name="recHumanosEditarBean")
+@ManagedBean
 @ViewScoped
-public class RecHumanosEditarBean extends ABaseBean
+public class PessoalEditar extends ABaseBean
 {   
     private Usuario usuario;
     private EnderecoRN endereco;
@@ -35,7 +34,7 @@ public class RecHumanosEditarBean extends ABaseBean
     TipoUsuario funcaoAtual;
     private Map<String,Integer> funcoes;
     
-    public RecHumanosEditarBean(){
+    public PessoalEditar(){
         this.inicializar();
     }
     
