@@ -2,19 +2,18 @@
 package org.aadsp.annotations.crud;
 
 import java.util.List;
-import org.aadsp.annotations.PermissoesAcesso;
-import org.aadsp.annotations.TipoUsuario;
+import org.aadsp.annotations.Paginas;
 import org.aadsp.interfaces.ICrud;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 
-public class PermissoesAcessoCRUD implements ICrud{
-    
+public class PaginasCRUD implements ICrud
+{
     private Session sessao;
-   
-   @Override
+    
+    @Override
     public void setSession(Session sessao) {
         this.sessao = sessao;
     }
@@ -43,11 +42,23 @@ public class PermissoesAcessoCRUD implements ICrud{
         sessao.close();
     }
     
-    
-    public List<PermissoesAcesso> listar()throws Exception
+    public Paginas consultarPorID(Paginas usuario)throws Exception
     {
         try{
-            Query consulta = sessao.createQuery("from PermissoesAcesso");
+        Query consulta = sessao.createQuery("from Paginas where ID = :idParametro");
+        consulta.setInteger("idParametro", usuario.getID());
+        return (Paginas) consulta.uniqueResult();
+        }catch(Exception e){
+            throw e;
+        }finally{
+            sessao.close();
+        }
+    }
+    
+    public List<Paginas> listar()throws Exception
+    {
+        try{
+            Query consulta = sessao.createQuery("from Paginas");
             return consulta.list();
         }catch(Exception e){
             throw e;
@@ -56,17 +67,4 @@ public class PermissoesAcessoCRUD implements ICrud{
         }
     }
     
-    public List<PermissoesAcesso> listarPorTipoUsuario(TipoUsuario tipoUsuario)throws Exception
-    {
-        try{
-            Query consulta = sessao.createQuery("from PermissoesAcesso WHERE ID_tipoUsuario = :idTipoUsuario");
-            consulta.setInteger("idTipoUsuario", tipoUsuario.getID());
-            return consulta.list();
-        }catch(Exception e){
-            throw e;
-        }finally{
-            sessao.close();
-        }
-    }
-
 }

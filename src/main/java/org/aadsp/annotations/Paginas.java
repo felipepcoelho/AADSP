@@ -9,13 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="AADSP.PERFIL.AADSP_PERFIL_PERMISSOES")
-public class PermissoesAcesso implements Serializable 
+@Table(name="PERFIL.AADSP_PERFIL_PAGINAS")
+public class Paginas implements Serializable 
 {
     @Id
     @GeneratedValue
     @Column(name="ID") private Integer ID;
-    @Column(name="ID_usuarioTipo") private Integer ID_usuarioTipo;
     @Column(name="pagina") private String pagina;
 
     public Integer getID()
@@ -28,16 +27,6 @@ public class PermissoesAcesso implements Serializable
         this.ID = ID;
     }
 
-    public Integer getID_usuarioTipo()
-    {
-        return ID_usuarioTipo;
-    }
-
-    public void setID_usuarioTipo(Integer ID_usuarioTipo)
-    {
-        this.ID_usuarioTipo = ID_usuarioTipo;
-    }
-
     public String getPagina()
     {
         return pagina;
@@ -47,7 +36,5 @@ public class PermissoesAcesso implements Serializable
     {
         this.pagina = pagina;
     }
-
-   
     
 }

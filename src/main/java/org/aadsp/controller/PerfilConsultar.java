@@ -41,7 +41,7 @@ public class PerfilConsultar extends ABaseBean
         return null;
     }
     
-    public void editar(Usuario selecionado) throws IOException
+    public void editar(TipoUsuario selecionado) throws IOException
     {
         FacesContext.getCurrentInstance().getExternalContext().getFlash().put("tipoUsuario", selecionado);
         FacesContext.getCurrentInstance().getExternalContext().redirect("/aadsp/faces/views/adm/PerfilCadastrar.xhtml");
