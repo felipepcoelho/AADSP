@@ -42,11 +42,11 @@ public class PaginasCRUD implements ICrud
         sessao.close();
     }
     
-    public Paginas consultarPorID(Paginas usuario)throws Exception
+    public Paginas consultarPorID(Paginas pagina)throws Exception
     {
         try{
         Query consulta = sessao.createQuery("from Paginas where ID = :idParametro");
-        consulta.setInteger("idParametro", usuario.getID());
+        consulta.setInteger("idParametro", pagina.getID());
         return (Paginas) consulta.uniqueResult();
         }catch(Exception e){
             throw e;

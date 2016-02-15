@@ -1,6 +1,8 @@
 package org.aadsp.utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,6 +14,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.aadsp.annotations.Autenticacao;
 
 @WebFilter(servletNames = { "Faces Servlet" })
 public class ControleDeAcesso implements Filter {
@@ -21,18 +24,40 @@ public class ControleDeAcesso implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) throws IOException, ServletException 
     {
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpSession session = req.getSession();
-
-
+        HttpSession session = req.getSession();        
+        
         if ((session.getAttribute("autenticacao") != null)
         || (req.getRequestURI().endsWith("Index.xhtml"))
+        || (req.getRequestURI().endsWith("acessoNegado.xhtml"))        
         || (req.getRequestURI().endsWith("aadsp/"))
         || (req.getRequestURI().contains("bootstrap/"))
         || (req.getRequestURI().contains("img/"))
         || (req.getRequestURI().contains("primefaces/"))
         || (req.getRequestURI().contains("javax.faces.resource/"))) 
         {
-            chain.doFilter(request, response);
+            if ((req.getRequestURI().endsWith("Index.xhtml"))
+                || (req.getRequestURI().endsWith("acessoNegado.xhtml"))
+                || (req.getRequestURI().endsWith("aadsp/"))
+                || (req.getRequestURI().contains("bootstrap/"))
+                || (req.getRequestURI().contains("img/"))
+                || (req.getRequestURI().contains("primefaces/"))
+                || (req.getRequestURI().contains("javax.faces.resource/")))
+            { 
+                    chain.doFilter(request, response);
+            }
+            else
+            {
+                List<String> paginaPermitida = new ArrayList<>();
+                paginaPermitida = (List<String>) session.getAttribute("paginasAcesso");
+                if(session.getAttribute("autenticacao") != null)
+                {
+                    for(String pag: paginaPermitida){
+                        if(req.getRequestURI().endsWith(pag))
+                        chain.doFilter(request, response);    
+                    }
+                    redireciona("/aadsp/faces/acessoNegado.xhtml", response);
+                }
+            }
         }
         else 
         {
