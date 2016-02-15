@@ -54,7 +54,7 @@ public class AutenticacaoCRUD implements ICrud{
         }
     }
     
-    public Autenticacao verificarLogin(Autenticacao autenticacao) throws Exception{
+    public Autenticacao validarLogin(Autenticacao autenticacao) throws Exception{
         try{
             Query consulta = sessao.createQuery("from Autenticacao where login = :loginParametro");
             consulta.setString("loginParametro", autenticacao.getLogin());

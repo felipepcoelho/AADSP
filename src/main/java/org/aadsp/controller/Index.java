@@ -1,7 +1,5 @@
 package org.aadsp.controller;
 
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.aadsp.annotations.Autenticacao;
 import org.aadsp.annotations.Paginas;
 import org.aadsp.annotations.Permissoes;
-import org.aadsp.annotations.TipoUsuario;
 import org.aadsp.annotations.Usuario;
 import org.aadsp.annotations.crud.AutenticacaoCRUD;
 import org.aadsp.annotations.crud.PaginasCRUD;
 import org.aadsp.annotations.crud.PermissoesCRUD;
-import org.aadsp.annotations.crud.TipoUsuarioCRUD;
 import org.aadsp.annotations.crud.UsuarioCRUD;
 import org.aadsp.interfaces.ABaseBean;
 import org.aadsp.utils.FactoryHibernate;
@@ -55,6 +51,8 @@ public class Index extends ABaseBean
        try{
         AutenticacaoCRUD crud = new AutenticacaoCRUD();;
         crud.setSession(FactoryHibernate.getSessionFactory().openSession());
+        Autenticacao copy = new Autenticacao();
+        copy = autenticacao;
         autenticacao = crud.autenticar(autenticacao);
         if(autenticacao != null && autenticacao.getLogin() != null && autenticacao.getSenha() != null)
         {
@@ -72,10 +70,22 @@ public class Index extends ABaseBean
         }
         else
         {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_WARN," ACESSO NEGADO  ",  "Não foi possível autenticar o usuário com os dados informados!"));
+            crud.setSession(FactoryHibernate.getSessionFactory().openSession());
+            autenticacao = crud.validarLogin(copy);
+            if(autenticacao != null && autenticacao.getLogin() != null && autenticacao.getSenha() != null)
+            {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_INFO," ACESSO NEGADO  ",  "Senha incorreta!"));
+            
+            }
+            else
+            {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_WARN," ACESSO NEGADO  ",  "Não foi possível autenticar o usuário com os dados informados!"));
+            }
         }
-       }catch(Exception e){
+       }
+       catch(Exception e){
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage( FacesMessage.SEVERITY_ERROR," ERRO!!  ",  "Não foi possível realizar a autenticação no banco de dados!"));
        }
