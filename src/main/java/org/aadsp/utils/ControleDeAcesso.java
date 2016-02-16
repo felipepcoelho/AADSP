@@ -25,24 +25,29 @@ public class ControleDeAcesso implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();        
         
+        controlarAcesso(session, req, chain, request, response);
+    }
+
+    private void controlarAcesso(HttpSession session, HttpServletRequest req, FilterChain chain, ServletRequest request, ServletResponse response) throws IOException, ServletException
+    {
         if ((session.getAttribute("autenticacao") != null)
-        || (req.getRequestURI().endsWith("Index.xhtml"))
-        || (req.getRequestURI().endsWith("acessoNegado.xhtml"))        
-        || (req.getRequestURI().endsWith("aadsp/"))
-        || (req.getRequestURI().contains("bootstrap/"))
-        || (req.getRequestURI().contains("img/"))
-        || (req.getRequestURI().contains("primefaces/"))
-        || (req.getRequestURI().contains("javax.faces.resource/"))) 
-        {
-            if ((req.getRequestURI().endsWith("Index.xhtml"))
+                || (req.getRequestURI().endsWith("Index.xhtml"))
                 || (req.getRequestURI().endsWith("acessoNegado.xhtml"))
                 || (req.getRequestURI().endsWith("aadsp/"))
                 || (req.getRequestURI().contains("bootstrap/"))
                 || (req.getRequestURI().contains("img/"))
                 || (req.getRequestURI().contains("primefaces/"))
                 || (req.getRequestURI().contains("javax.faces.resource/")))
-            { 
-                    chain.doFilter(request, response);
+        {
+            if ((req.getRequestURI().endsWith("Index.xhtml"))
+                    || (req.getRequestURI().endsWith("acessoNegado.xhtml"))
+                    || (req.getRequestURI().endsWith("aadsp/"))
+                    || (req.getRequestURI().contains("bootstrap/"))
+                    || (req.getRequestURI().contains("img/"))
+                    || (req.getRequestURI().contains("primefaces/"))
+                    || (req.getRequestURI().contains("javax.faces.resource/")))
+            {
+                chain.doFilter(request, response);
             }
             else
             {
@@ -52,7 +57,7 @@ public class ControleDeAcesso implements Filter {
                 {
                     for(String pag: paginaPermitida){
                         if(req.getRequestURI().endsWith(pag))
-                        chain.doFilter(request, response);    
+                            chain.doFilter(request, response);    
                     }
                     redireciona("/aadsp/faces/acessoNegado.xhtml", response);
                 }
@@ -62,8 +67,6 @@ public class ControleDeAcesso implements Filter {
         {
             redireciona("/aadsp/faces/Index.xhtml", response);
         }
-
-
     }
 
     public void init(FilterConfig filterConfig) throws ServletException {
