@@ -1,5 +1,5 @@
 
-package org.aadsp.controller;
+package org.aadsp.controller.named;
 
 import java.io.IOException;
 import javax.faces.application.FacesMessage;

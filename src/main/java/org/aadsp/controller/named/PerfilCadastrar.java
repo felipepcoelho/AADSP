@@ -1,4 +1,4 @@
-package org.aadsp.controller;
+package org.aadsp.controller.named;
 
 import java.util.ArrayList;
 import java.util.List;

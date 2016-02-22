@@ -1,4 +1,4 @@
-package org.aadsp.controller;
+package org.aadsp.controller.named;
 
 import java.text.ParseException;
 import java.util.Date;
